@@ -17,7 +17,9 @@
 		447341E21777880D00F54DBB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 447341E11777880D00F54DBB /* Default@2x.png */; };
 		447341E41777880D00F54DBB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 447341E31777880D00F54DBB /* Default-568h@2x.png */; };
 		447341E71777880D00F54DBB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447341E51777880D00F54DBB /* MainStoryboard.storyboard */; };
-		447341EA1777880D00F54DBB /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341E91777880D00F54DBB /* ChatViewController.m */; };
+		447341F2177788B500F54DBB /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341F1177788B500F54DBB /* ChatsViewController.m */; };
+		447341F517778C8400F54DBB /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341F417778C8400F54DBB /* ChatDetailViewController.m */; };
+		447341F71777D24C00F54DBB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 447341F61777D24C00F54DBB /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +37,11 @@
 		447341E11777880D00F54DBB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		447341E31777880D00F54DBB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		447341E61777880D00F54DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		447341E81777880D00F54DBB /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		447341E91777880D00F54DBB /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		447341F0177788B500F54DBB /* ChatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsViewController.h; sourceTree = SOURCE_ROOT; };
+		447341F1177788B500F54DBB /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = SOURCE_ROOT; };
+		447341F317778C8400F54DBB /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
+		447341F417778C8400F54DBB /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
+		447341F61777D24C00F54DBB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +91,11 @@
 				447341DC1777880D00F54DBB /* ChatAppDelegate.h */,
 				447341DD1777880D00F54DBB /* ChatAppDelegate.m */,
 				447341E51777880D00F54DBB /* MainStoryboard.storyboard */,
-				447341E81777880D00F54DBB /* ChatViewController.h */,
-				447341E91777880D00F54DBB /* ChatViewController.m */,
+				447341F317778C8400F54DBB /* ChatDetailViewController.h */,
+				447341F417778C8400F54DBB /* ChatDetailViewController.m */,
+				447341F61777D24C00F54DBB /* Settings.bundle */,
+				447341F0177788B500F54DBB /* ChatsViewController.h */,
+				447341F1177788B500F54DBB /* ChatsViewController.m */,
 				447341D41777880D00F54DBB /* Supporting Files */,
 			);
 			path = Chat;
@@ -164,6 +172,7 @@
 				447341E21777880D00F54DBB /* Default@2x.png in Resources */,
 				447341E41777880D00F54DBB /* Default-568h@2x.png in Resources */,
 				447341E71777880D00F54DBB /* MainStoryboard.storyboard in Resources */,
+				447341F71777D24C00F54DBB /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +185,8 @@
 			files = (
 				447341DA1777880D00F54DBB /* main.m in Sources */,
 				447341DE1777880D00F54DBB /* ChatAppDelegate.m in Sources */,
-				447341EA1777880D00F54DBB /* ChatViewController.m in Sources */,
+				447341F2177788B500F54DBB /* ChatsViewController.m in Sources */,
+				447341F517778C8400F54DBB /* ChatDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

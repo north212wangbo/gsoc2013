@@ -1,5 +1,5 @@
 //
-//  ChatViewController.h
+//  ChatsViewController.h
 //  Chat
 //
 //  Created by Bo Wang on 6/23/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatViewController : UIViewController
+@interface ChatsViewController : UITableViewController
 
 @end
