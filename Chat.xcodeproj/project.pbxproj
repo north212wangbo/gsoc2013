@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		446414711778EE2E000C442F /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 446414701778EE2E000C442F /* Readme.txt */; };
 		447341CE1777880D00F54DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447341CD1777880D00F54DBB /* UIKit.framework */; };
 		447341D01777880D00F54DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447341CF1777880D00F54DBB /* Foundation.framework */; };
 		447341D21777880D00F54DBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447341D11777880D00F54DBB /* CoreGraphics.framework */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		446414701778EE2E000C442F /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		447341CA1777880D00F54DBB /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447341CD1777880D00F54DBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		447341CF1777880D00F54DBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				447341D51777880D00F54DBB /* Chat-Info.plist */,
+				446414701778EE2E000C442F /* Readme.txt */,
 				447341D61777880D00F54DBB /* InfoPlist.strings */,
 				447341D91777880D00F54DBB /* main.m */,
 				447341DB1777880D00F54DBB /* Chat-Prefix.pch */,
@@ -173,6 +176,7 @@
 				447341E41777880D00F54DBB /* Default-568h@2x.png in Resources */,
 				447341E71777880D00F54DBB /* MainStoryboard.storyboard in Resources */,
 				447341F71777D24C00F54DBB /* Settings.bundle in Resources */,
+				446414711778EE2E000C442F /* Readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +313,7 @@
 				447341EF1777880D00F54DBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
