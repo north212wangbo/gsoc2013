@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatsViewController : UITableViewController
+@interface ChatsViewController : UITableViewController <NSXMLParserDelegate>
+- (IBAction)login:(id)sender;
 
 @end

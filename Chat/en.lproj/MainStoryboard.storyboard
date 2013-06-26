@@ -27,7 +27,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Chats" id="9pL-dW-5NV"/>
+                    <navigationItem key="navigationItem" title="Chats" id="9pL-dW-5NV">
+                        <barButtonItem key="rightBarButtonItem" title="Login" id="zOH-4t-58U">
+                            <connections>
+                                <action selector="login:" destination="98S-zS-HuT" id="JbL-OI-zCY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vRG-My-0KK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,8 +7,10 @@
 //
 
 #import "ChatDetailViewController.h"
+#import "ChatAppDelegate.h"
 
 @interface ChatDetailViewController () {
+    
     NSMutableData *receivedData;
     NSMutableArray *messages;
     int lastId;
@@ -18,6 +20,7 @@
     NSString *msgAdded;
     NSMutableString *msgUser;
     NSMutableString *msgText;
+    NSString *userName;
     int msgId;
     Boolean inText;
     Boolean inUser;
@@ -34,6 +37,7 @@
         // Custom initialization
         lastId = 0;
         chatParser = NULL;
+        
     }
     return self;
 }
@@ -45,6 +49,8 @@
     self.messageList.dataSource = self;
     self.messageList.delegate = self;
     
+    ChatAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    userName = delegate.userName;
     [self getNewMessages];
 }
 
@@ -55,6 +61,7 @@
 }
 
 - (IBAction)sendClicked:(id)sender {
+    
     [self.messageText resignFirstResponder];
     if ( [self.messageText.text length] > 0 ) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -66,13 +73,11 @@
                                          init];
         [request setURL:[NSURL URLWithString:url]];
         [request setHTTPMethod:@"POST"];
-        
         NSMutableData *body = [NSMutableData data];
         [body appendData:[[NSString stringWithFormat:@"user=%@&message=%@",
-                           [defaults stringForKey:@"user_preference"],
+                           userName,
                            self.messageText.text] dataUsingEncoding:NSUTF8StringEncoding]];
         [request setHTTPBody:body];
-        
         NSHTTPURLResponse *response = nil;
         NSError *error = [[NSError alloc] init];
         [NSURLConnection sendSynchronousRequest:request

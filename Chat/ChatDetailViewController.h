@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatDetailViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@interface ChatDetailViewController : UIViewController <UITableViewDelegate,UITableViewDataSource,NSXMLParserDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *messageText;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sendButton;

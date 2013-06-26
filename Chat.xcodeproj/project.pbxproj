@@ -20,7 +20,6 @@
 		447341E71777880D00F54DBB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447341E51777880D00F54DBB /* MainStoryboard.storyboard */; };
 		447341F2177788B500F54DBB /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341F1177788B500F54DBB /* ChatsViewController.m */; };
 		447341F517778C8400F54DBB /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341F417778C8400F54DBB /* ChatDetailViewController.m */; };
-		447341F71777D24C00F54DBB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 447341F61777D24C00F54DBB /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,6 @@
 		447341F1177788B500F54DBB /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = SOURCE_ROOT; };
 		447341F317778C8400F54DBB /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
 		447341F417778C8400F54DBB /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
-		447341F61777D24C00F54DBB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +93,6 @@
 				447341E51777880D00F54DBB /* MainStoryboard.storyboard */,
 				447341F317778C8400F54DBB /* ChatDetailViewController.h */,
 				447341F417778C8400F54DBB /* ChatDetailViewController.m */,
-				447341F61777D24C00F54DBB /* Settings.bundle */,
 				447341F0177788B500F54DBB /* ChatsViewController.h */,
 				447341F1177788B500F54DBB /* ChatsViewController.m */,
 				447341D41777880D00F54DBB /* Supporting Files */,
@@ -175,7 +172,6 @@
 				447341E21777880D00F54DBB /* Default@2x.png in Resources */,
 				447341E41777880D00F54DBB /* Default-568h@2x.png in Resources */,
 				447341E71777880D00F54DBB /* MainStoryboard.storyboard in Resources */,
-				447341F71777D24C00F54DBB /* Settings.bundle in Resources */,
 				446414711778EE2E000C442F /* Readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
