@@ -37,7 +37,6 @@
         // Custom initialization
         lastId = 0;
         chatParser = NULL;
-        
     }
     return self;
 }
@@ -74,9 +73,9 @@
         [request setURL:[NSURL URLWithString:url]];
         [request setHTTPMethod:@"POST"];
         NSMutableData *body = [NSMutableData data];
-        [body appendData:[[NSString stringWithFormat:@"user=%@&message=%@",
+        [body appendData:[[NSString stringWithFormat:@"user=%@&message=%@&groupId=%@",
                            userName,
-                           self.messageText.text] dataUsingEncoding:NSUTF8StringEncoding]];
+                           self.messageText.text,self.groupId] dataUsingEncoding:NSUTF8StringEncoding]];
         [request setHTTPBody:body];
         NSHTTPURLResponse *response = nil;
         NSError *error = [[NSError alloc] init];
@@ -94,7 +93,8 @@
 
 - (void)getNewMessages {
     NSString *url = [NSString stringWithFormat:
-                     @"http://localhost:8888/ResearchProject/server-side/messages.php?past=%d&t=%ld",lastId,time(0)];
+                     @"http://localhost:8888/ResearchProject/server-side/messages.php?past=%d&t=%ld&groupId=%@",lastId,time(0),self.groupId];
+    NSLog(@"Group id is: %@",self.groupId);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];

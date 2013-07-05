@@ -8,19 +8,28 @@
 
 #import "ChatsViewController.h"
 #import "ChatAppDelegate.h"
+#import "ChatDetailViewController.h"
 
 @interface ChatsViewController () {
-    ChatAppDelegate *delegate; 
+    ChatAppDelegate *delegate;
+    
+    NSURLConnection *conn;
+    NSURLConnection *conn1;
 
     NSString *user;
     NSString *password;
     NSMutableData *receivedData;
-    NSXMLParser *parser;
+    NSXMLParser *parser1,*parser2;   //parser1 for login, parser2 for group list
     
     Boolean inSuccess;
     Boolean inUser;
     NSString *userName;
     NSString *success;
+    
+    NSString *groupId;
+    Boolean inGroupId;
+    
+    NSMutableArray *groups;
 }
 
 @end
@@ -57,16 +66,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 1;
+    NSLog(@"Groups count: %d",[groups count]);
+    return (groups == nil)?1:[groups count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:
+(NSIndexPath *)indexPath {
+    return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,11 +85,20 @@
     static NSString *CellIdentifier = @"chats";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    
     // Configure the cell...
-    cell.textLabel.text = @"Broadcast";
+
+    
+    NSDictionary *itemAtIndex = (NSDictionary *)[groups objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat: @"Group(%@)",[itemAtIndex objectForKey:@"groupId"]];
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
+    //cell.detailTextLabel.numberOfLines = 0;
+    //cell.detailTextLabel.text = [itemAtIndex objectForKey:@"members"];
+    //cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
     
     return cell;
 }
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -123,13 +143,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+//    ChatDetailViewController *detailViewController = [[ChatDetailViewController alloc] initWithNibName:nil bundle:nil];
+//    NSDictionary *itemAtIndex = (NSDictionary *)[groups objectAtIndex:indexPath.row];
+//    detailViewController.groupId = [itemAtIndex objectForKey:@"groupId"];
+//    //NSLog(@"Group id is: %@",detailViewController.groupId);
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if ([segue.identifier isEqualToString:@"chatGroup"]) {
+        ChatDetailViewController *controller = segue.destinationViewController;
+        NSDictionary *itemAtIndex = (NSDictionary *)[groups objectAtIndex:indexPath.row];
+        controller.groupId = [itemAtIndex objectForKey:@"groupId"];
+    }
 }
 
 - (IBAction)login:(id)sender {
@@ -157,8 +183,28 @@
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
     
-    NSURLConnection *conn=[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    conn =[[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (conn)
+    {
+        NSLog(@"connected");
+        receivedData = [[NSMutableData alloc] init];
+    }
+    else
+    {
+        NSLog(@"not connected");
+    }
+}
+
+- (void)getGrouplist{
+    NSString *url = [NSString stringWithFormat:
+                     @"http://localhost:8888/ResearchProject/server-side/group-list.php?user=%@",userName];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"GET"];
+    
+    conn1=[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn1)
     {
         NSLog(@"connected");
         receivedData = [[NSMutableData alloc] init];
@@ -183,14 +229,26 @@ didReceiveResponse:(NSURLResponse *)response
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    if (connection == conn) {        
+        parser1 = [[NSXMLParser alloc] initWithData:receivedData];
+        [parser1 setDelegate:self];
+        [parser1 parse];
+        
+        if ([success isEqualToString:@"1"] ) {
+            delegate.userName = userName;
+            [groups removeAllObjects];
+            [self getGrouplist];
+        }
+    }
     
-    parser = [[NSXMLParser alloc] initWithData:receivedData];
-    [parser setDelegate:self];
-    [parser parse];
-
-    if ([success isEqualToString:@"1"] ) {
-        delegate.userName = userName;
-        NSLog(@"enter here: %@",delegate.userName);
+    if (connection == conn1) {
+        if ( groups == nil )
+            groups = [[NSMutableArray alloc] init];
+        
+        parser2 = [[NSXMLParser alloc] initWithData:receivedData];
+        [parser2 setDelegate:self];
+        [parser2 parse];
+        [self.tableView reloadData];
     }
 
 }
@@ -200,46 +258,74 @@ didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
     attributes:(NSDictionary *)attributeDict {
-    if ( [elementName isEqualToString:@"login"] ) {
-        userName = @"";
-        success = @"";
-        inUser = NO;
-        inSuccess = NO;
+    if (parser == parser1) {
+        if ( [elementName isEqualToString:@"login"] ) {
+            userName = @"";
+            success = @"";
+            inUser = NO;
+            inSuccess = NO;
+        }
+        if ( [elementName isEqualToString:@"success"] ) {
+            inSuccess = YES;
+        }
+        if ( [elementName isEqualToString:@"user"] ) {
+            inUser = YES;
+        }
     }
-    if ( [elementName isEqualToString:@"success"] ) {
-        inSuccess = YES;
-    }
-    if ( [elementName isEqualToString:@"user"] ) {
-        inUser = YES;
+    if (parser == parser2) {
+        if ([elementName isEqualToString:@"group"]) {
+            groupId =@"";
+        }
+        if ([elementName isEqualToString:@"groupId"]) {
+            inGroupId = YES;
+        }
     }
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    if ( inSuccess ) {
-        success = [string stringByTrimmingCharactersInSet:
-                   [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (parser == parser1) {
+        if ( inSuccess ) {
+            success = [string stringByTrimmingCharactersInSet:
+                       [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }
+        if ( inUser ) {
+            userName = [string stringByTrimmingCharactersInSet:
+                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }
     }
-    if ( inUser ) {
-        userName = [string stringByTrimmingCharactersInSet:
-                    [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (parser == parser2) {
+        if ( inGroupId ) {
+            groupId = [string stringByTrimmingCharactersInSet:
+                       [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }
     }
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    if ( [elementName isEqualToString:@"login"] ) {
+    if (parser == parser1) {
+        if ( [elementName isEqualToString:@"login"] ) {
+            NSLog(@"user name is:%@",userName);
+            NSLog(@"Is succeed:%@",success);
+        }
         
-        NSLog(@"user name is:%@",userName);
-        NSLog(@"Is succeed:%@",success);
+        if ( [elementName isEqualToString:@"user"] ) {
+            inUser = NO;
+        }
+        if ( [elementName isEqualToString:@"success"] ) {
+            inSuccess = NO;
+        }
     }
-
-    if ( [elementName isEqualToString:@"user"] ) {
-        inUser = NO;
+    if (parser == parser2) {
+        if ( [elementName isEqualToString:@"group"] ) {
+            [groups addObject:[NSDictionary dictionaryWithObjectsAndKeys:groupId,
+                                 @"groupId",nil]];
+        }
+        
+        if ( [elementName isEqualToString:@"groupId"] ) {
+            inGroupId = NO;
+        }
     }
-    if ( [elementName isEqualToString:@"success"] ) {
-        inSuccess = NO;
-    }
-
 }
 
 

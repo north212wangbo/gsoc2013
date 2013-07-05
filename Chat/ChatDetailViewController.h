@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *messageText;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sendButton;
 @property (weak, nonatomic) IBOutlet UITableView *messageList;
+@property (copy, nonatomic) NSString *groupId;
 
 
 - (IBAction)sendClicked:(id)sender;
