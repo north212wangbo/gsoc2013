@@ -28,6 +28,7 @@
 		44C0D36D1787860E00245D99 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D36C1787860E00245D99 /* MapViewController.m */; };
 		44C0D36F17878DF100245D99 /* navigator.png in Resources */ = {isa = PBXBuildFile; fileRef = 44C0D36E17878DF100245D99 /* navigator.png */; };
 		44C0D3721787947300245D99 /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D3711787947300245D99 /* MyLocation.m */; };
+		44C0D375178A922600245D99 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D374178A922600245D99 /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		44C0D36E17878DF100245D99 /* navigator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigator.png; sourceTree = "<group>"; };
 		44C0D3701787947300245D99 /* MyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocation.h; sourceTree = "<group>"; };
 		44C0D3711787947300245D99 /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocation.m; sourceTree = "<group>"; };
+		44C0D373178A922600245D99 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		44C0D374178A922600245D99 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 				447341DC1777880D00F54DBB /* ChatAppDelegate.h */,
 				447341DD1777880D00F54DBB /* ChatAppDelegate.m */,
 				447341E51777880D00F54DBB /* MainStoryboard.storyboard */,
+				44C0D373178A922600245D99 /* LoginViewController.h */,
+				44C0D374178A922600245D99 /* LoginViewController.m */,
 				44C0D36B1787860E00245D99 /* MapViewController.h */,
 				44C0D36C1787860E00245D99 /* MapViewController.m */,
 				44C0D3701787947300245D99 /* MyLocation.h */,
@@ -225,6 +230,7 @@
 				446A1167178110C60098CE4B /* AddNewChatViewController.m in Sources */,
 				44C0D36D1787860E00245D99 /* MapViewController.m in Sources */,
 				44C0D3721787947300245D99 /* MyLocation.m in Sources */,
+				44C0D375178A922600245D99 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

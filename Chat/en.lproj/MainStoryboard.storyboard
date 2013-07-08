@@ -42,11 +42,6 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Chats" id="9pL-dW-5NV">
-                        <barButtonItem key="leftBarButtonItem" title="Login" id="zOH-4t-58U">
-                            <connections>
-                                <action selector="login:" destination="98S-zS-HuT" id="JbL-OI-zCY"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WaQ-BZ-Eox">
                             <connections>
                                 <segue destination="bRN-jp-3pX" kind="push" id="fn2-HO-OIU"/>
@@ -177,7 +172,6 @@
         <!--Map View Controller - Map-->
         <scene sceneID="Ka0-Ye-avU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MUV-TR-dRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="IkC-Yi-Gao" customClass="MapViewController" sceneMemberID="viewController">
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="Mpk-BA-yKc">
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
@@ -189,14 +183,15 @@
                         <outlet property="FieldMapView" destination="Mpk-BA-yKc" id="cKZ-wd-gfS"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MUV-TR-dRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="421" y="1001"/>
+            <point key="canvasLocation" x="515" y="785"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="g0V-pv-wIi">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="qth-E8-Dlv" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="tMv-ON-GoG">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -205,11 +200,38 @@
                     <connections>
                         <segue destination="IkC-Yi-Gao" kind="relationship" relationship="viewControllers" id="iGE-ab-f3d"/>
                         <segue destination="h4g-OO-xxI" kind="relationship" relationship="viewControllers" id="GPA-Qt-s5g"/>
+                        <segue destination="i0d-qk-bod" kind="relationship" relationship="viewControllers" id="NDO-qi-LKf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3c9-Z7-1SL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-113" y="726"/>
+            <point key="canvasLocation" x="61" y="768"/>
+        </scene>
+        <!--Login View Controller - Login-->
+        <scene sceneID="eZR-PQ-bJa">
+            <objects>
+                <viewController id="i0d-qk-bod" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qwG-yZ-OGX">
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QlD-fu-G62">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QlD-fu-G62" firstAttribute="bottom" secondItem="qwG-yZ-OGX" secondAttribute="bottom" type="default" id="CGg-wh-Y70"/>
+                            <constraint firstItem="QlD-fu-G62" firstAttribute="trailing" secondItem="qwG-yZ-OGX" secondAttribute="trailing" type="default" id="ClU-ku-wDu"/>
+                            <constraint firstItem="QlD-fu-G62" firstAttribute="leading" secondItem="qwG-yZ-OGX" secondAttribute="leading" type="default" id="nxz-CS-0EP"/>
+                            <constraint firstItem="QlD-fu-G62" firstAttribute="top" secondItem="qwG-yZ-OGX" secondAttribute="top" type="default" id="zFt-fe-iH1"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Login" id="Fgs-CK-hxw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zeT-G0-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256" y="1448"/>
         </scene>
         <!--Navigation Controller - Message-->
         <scene sceneID="ZZz-rM-GlJ">

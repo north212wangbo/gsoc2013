@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface MapViewController : UIViewController <NSXMLParserDelegate>
+@interface MapViewController : UIViewController <NSXMLParserDelegate,CLLocationManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *FieldMapView;
 

@@ -11,7 +11,6 @@
 #import "ChatDetailViewController.h"
 
 @interface ChatsViewController () {
-    ChatAppDelegate *delegate;
     
     NSURLConnection *conn;
     NSURLConnection *conn1;
@@ -48,12 +47,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    delegate = (ChatAppDelegate *)[[UIApplication sharedApplication] delegate];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self getGrouplist];
 }
 
 - (void)didReceiveMemoryWarning
@@ -158,47 +160,10 @@
     }
 }
 
-- (IBAction)login:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In" message:@"" delegate:self cancelButtonTitle:@"Login" otherButtonTitles:@"Cancel", nil];
-    alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    [alert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    user = [[alertView textFieldAtIndex:0] text];
-    password = [[alertView textFieldAtIndex:1] text];
-    
-    NSLog(@"Login:%@", user);
-    NSLog(@"Password: %@", password);
-    [self authenticate];
-}
-
-
-- (void)authenticate {
-    NSString *url = [NSString stringWithFormat:
-                     @"http://localhost:8888/ResearchProject/server-side/login.php?user=%@&password=%@",user,password];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:url]];
-    [request setHTTPMethod:@"GET"];
-    
-    
-    conn =[[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (conn)
-    {
-        NSLog(@"connected");
-        receivedData = [[NSMutableData alloc] init];
-    }
-    else
-    {
-        NSLog(@"not connected");
-    }
-}
-
 - (void)getGrouplist{
+    ChatAppDelegate *delegate = (ChatAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *url = [NSString stringWithFormat:
-                     @"http://localhost:8888/ResearchProject/server-side/group-list.php?user=%@",userName];
+                     @"http://localhost:8888/ResearchProject/server-side/group-list.php?user=%@",delegate.userName];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
@@ -229,22 +194,11 @@ didReceiveResponse:(NSURLResponse *)response
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if (connection == conn) {        
-        parser1 = [[NSXMLParser alloc] initWithData:receivedData];
-        [parser1 setDelegate:self];
-        [parser1 parse];
-        
-        if ([success isEqualToString:@"1"] ) {
-            delegate.userName = userName;
-            [groups removeAllObjects];
-            [self getGrouplist];
-        }
-    }
-    
     if (connection == conn1) {
         if ( groups == nil )
             groups = [[NSMutableArray alloc] init];
         
+        [groups removeAllObjects];
         parser2 = [[NSXMLParser alloc] initWithData:receivedData];
         [parser2 setDelegate:self];
         [parser2 parse];
@@ -258,20 +212,6 @@ didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
     attributes:(NSDictionary *)attributeDict {
-    if (parser == parser1) {
-        if ( [elementName isEqualToString:@"login"] ) {
-            userName = @"";
-            success = @"";
-            inUser = NO;
-            inSuccess = NO;
-        }
-        if ( [elementName isEqualToString:@"success"] ) {
-            inSuccess = YES;
-        }
-        if ( [elementName isEqualToString:@"user"] ) {
-            inUser = YES;
-        }
-    }
     if (parser == parser2) {
         if ([elementName isEqualToString:@"group"]) {
             groupId =@"";
@@ -283,16 +223,6 @@ didStartElement:(NSString *)elementName
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    if (parser == parser1) {
-        if ( inSuccess ) {
-            success = [string stringByTrimmingCharactersInSet:
-                       [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        }
-        if ( inUser ) {
-            userName = [string stringByTrimmingCharactersInSet:
-                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        }
-    }
     if (parser == parser2) {
         if ( inGroupId ) {
             groupId = [string stringByTrimmingCharactersInSet:
@@ -303,19 +233,6 @@ didStartElement:(NSString *)elementName
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    if (parser == parser1) {
-        if ( [elementName isEqualToString:@"login"] ) {
-            NSLog(@"user name is:%@",userName);
-            NSLog(@"Is succeed:%@",success);
-        }
-        
-        if ( [elementName isEqualToString:@"user"] ) {
-            inUser = NO;
-        }
-        if ( [elementName isEqualToString:@"success"] ) {
-            inSuccess = NO;
-        }
-    }
     if (parser == parser2) {
         if ( [elementName isEqualToString:@"group"] ) {
             [groups addObject:[NSDictionary dictionaryWithObjectsAndKeys:groupId,

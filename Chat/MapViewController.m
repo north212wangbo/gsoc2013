@@ -8,10 +8,12 @@
 
 #import "MapViewController.h"
 #import "MyLocation.h"
+#import <CoreLocation/CoreLocation.h>
 #define METERS_PER_MILE 1609.344
 
 
 @interface MapViewController () {
+    CLLocationManager *locationManager;
     NSMutableData *receivedData;
     NSMutableArray *locations;
     NSXMLParser *locationParser;
@@ -40,13 +42,18 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = 45.703557;
-    zoomLocation.longitude= -122.642766;
+    [super viewDidLoad];    
     
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1*METERS_PER_MILE, 1*METERS_PER_MILE);
+    if (nil == locationManager)
+        locationManager = [[CLLocationManager alloc] init];
+    
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    
+    // Set a movement threshold for new events.
+    locationManager.distanceFilter = 500;
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.FieldMapView.userLocation.coordinate, 1*METERS_PER_MILE, 1*METERS_PER_MILE);
     
     [self.FieldMapView setRegion:viewRegion animated:YES];
     
@@ -77,11 +84,13 @@
 
 -(void)refresh{
     //To do: update one's location, pull other's location
-    CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = 45.703557;
-    zoomLocation.longitude= -122.642766;
+//    CLLocationCoordinate2D zoomLocation;
+//    zoomLocation.latitude = 45.703557;
+//    zoomLocation.longitude= -122.642766;
+//    
+//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1*METERS_PER_MILE, 1*METERS_PER_MILE);
     
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1*METERS_PER_MILE, 1*METERS_PER_MILE);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.FieldMapView.userLocation.coordinate, 1*METERS_PER_MILE, 1*METERS_PER_MILE);
     
     [self.FieldMapView setRegion:viewRegion animated:YES];
     [self getLocations];
