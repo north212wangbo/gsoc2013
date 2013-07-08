@@ -23,6 +23,11 @@
 		447341E71777880D00F54DBB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447341E51777880D00F54DBB /* MainStoryboard.storyboard */; };
 		447341F2177788B500F54DBB /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341F1177788B500F54DBB /* ChatsViewController.m */; };
 		447341F517778C8400F54DBB /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341F417778C8400F54DBB /* ChatDetailViewController.m */; };
+		44C0D3681787810100245D99 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C0D3671787810100245D99 /* CoreLocation.framework */; };
+		44C0D36A1787812700245D99 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C0D3691787812700245D99 /* MapKit.framework */; };
+		44C0D36D1787860E00245D99 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D36C1787860E00245D99 /* MapViewController.m */; };
+		44C0D36F17878DF100245D99 /* navigator.png in Resources */ = {isa = PBXBuildFile; fileRef = 44C0D36E17878DF100245D99 /* navigator.png */; };
+		44C0D3721787947300245D99 /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D3711787947300245D99 /* MyLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +54,13 @@
 		447341F1177788B500F54DBB /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = SOURCE_ROOT; };
 		447341F317778C8400F54DBB /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
 		447341F417778C8400F54DBB /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
+		44C0D3671787810100245D99 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		44C0D3691787812700245D99 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		44C0D36B1787860E00245D99 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		44C0D36C1787860E00245D99 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		44C0D36E17878DF100245D99 /* navigator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigator.png; sourceTree = "<group>"; };
+		44C0D3701787947300245D99 /* MyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocation.h; sourceTree = "<group>"; };
+		44C0D3711787947300245D99 /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44C0D36A1787812700245D99 /* MapKit.framework in Frameworks */,
+				44C0D3681787810100245D99 /* CoreLocation.framework in Frameworks */,
 				447341CE1777880D00F54DBB /* UIKit.framework in Frameworks */,
 				447341D01777880D00F54DBB /* Foundation.framework in Frameworks */,
 				447341D21777880D00F54DBB /* CoreGraphics.framework in Frameworks */,
@@ -68,6 +82,8 @@
 		447341C11777880D00F54DBB = {
 			isa = PBXGroup;
 			children = (
+				44C0D3691787812700245D99 /* MapKit.framework */,
+				44C0D3671787810100245D99 /* CoreLocation.framework */,
 				447341D31777880D00F54DBB /* Chat */,
 				447341CC1777880D00F54DBB /* Frameworks */,
 				447341CB1777880D00F54DBB /* Products */,
@@ -98,6 +114,10 @@
 				447341DC1777880D00F54DBB /* ChatAppDelegate.h */,
 				447341DD1777880D00F54DBB /* ChatAppDelegate.m */,
 				447341E51777880D00F54DBB /* MainStoryboard.storyboard */,
+				44C0D36B1787860E00245D99 /* MapViewController.h */,
+				44C0D36C1787860E00245D99 /* MapViewController.m */,
+				44C0D3701787947300245D99 /* MyLocation.h */,
+				44C0D3711787947300245D99 /* MyLocation.m */,
 				446A1165178110C50098CE4B /* AddNewChatViewController.h */,
 				446A1166178110C60098CE4B /* AddNewChatViewController.m */,
 				447341F317778C8400F54DBB /* ChatDetailViewController.h */,
@@ -122,6 +142,7 @@
 				447341E31777880D00F54DBB /* Default-568h@2x.png */,
 				446A116A178227730098CE4B /* checked.png */,
 				446A116C17822B520098CE4B /* unchecked.png */,
+				44C0D36E17878DF100245D99 /* navigator.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -186,6 +207,7 @@
 				446414711778EE2E000C442F /* Readme.txt in Resources */,
 				446A116B178227730098CE4B /* checked.png in Resources */,
 				446A116D17822B520098CE4B /* unchecked.png in Resources */,
+				44C0D36F17878DF100245D99 /* navigator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +223,8 @@
 				447341F2177788B500F54DBB /* ChatsViewController.m in Sources */,
 				447341F517778C8400F54DBB /* ChatDetailViewController.m in Sources */,
 				446A1167178110C60098CE4B /* AddNewChatViewController.m in Sources */,
+				44C0D36D1787860E00245D99 /* MapViewController.m in Sources */,
+				44C0D3721787947300245D99 /* MyLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
