@@ -8,6 +8,10 @@
 
 #import "AddNewChatViewController.h"
 #import "ChatDetailViewController.h"
+#import "FieldStudyAppDelegate.h"
+#import "ChatsViewController.h"
+//#define DEVICE_SCHOOL
+#define DEVICE_HOME
 
 @interface AddNewChatViewController () {
     
@@ -57,45 +61,92 @@
 
 - (IBAction)createGroup:(id)sender
 {
+    ChatsViewController *chatsViewController = [[ChatsViewController alloc] init];
     [self getLatestGroupId];
     currentGroupId += 1;
     NSLog(@"latest id is %d", currentGroupId);
-    [self performSegueWithIdentifier:@"newChatSegue" sender:self];
+    [chatsViewController performSegueWithIdentifier:@"chatGroup" sender:self];
     
 }
 
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"newChatSegue"]) {
-        ChatDetailViewController *controller = segue.destinationViewController;
-        controller.groupId = [NSString stringWithFormat:@"%d", currentGroupId];
-        
-        for (int i=0; i<[contacts count]; i++) {
-            if ([[contactsChecked objectAtIndex:i] boolValue] == YES){
-                NSDictionary *itemAtIndex = (NSDictionary *)[contacts objectAtIndex:i];
-                NSString *member = [itemAtIndex objectForKey:@"name"];
-                
-                NSString *url = @"http://localhost:8888/ResearchProject/server-side/add-newChatGroup.php";
-                NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-                [request setURL:[NSURL URLWithString:url]];
-                [request setHTTPMethod:@"POST"];
-                NSMutableData *body = [NSMutableData data];
-                [body appendData:[[NSString stringWithFormat:@"member=%@&groupId=%d",
-                                   member,
-                                   currentGroupId] dataUsingEncoding:NSUTF8StringEncoding]];
-                [request setHTTPBody:body];
-                NSHTTPURLResponse *response = nil;
-                NSError *error = [[NSError alloc] init];
-                [NSURLConnection sendSynchronousRequest:request
-                                      returningResponse:&response error:&error];
-            }
-        }
-    }
-}
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([segue.identifier isEqualToString:@"chatGroup"]) {
+//        ChatDetailViewController *controller = segue.destinationViewController;
+//        controller.groupId = [NSString stringWithFormat:@"%d", currentGroupId];
+//        
+//        FieldStudyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+//        
+//#ifdef SIMULATOR
+//        NSString *url = @"http://localhost:8888/ResearchProject/server-side/add-newChatGroup.php";
+//#endif
+//        
+//#ifdef DEVICE_SCHOOL
+//        NSString *url = @"http://172.29.0.199:8888/ResearchProject/server-side/add-newChatGroup.php";
+//#endif
+//        
+//#ifdef DEVICE_HOME
+//        NSString *url = @"http://192.168.0.72:8888/ResearchProject/server-side/add-newChatGroup.php";
+//#endif
+//        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//        [request setURL:[NSURL URLWithString:url]];
+//        [request setHTTPMethod:@"POST"];
+//        NSMutableData *body = [NSMutableData data];
+//        [body appendData:[[NSString stringWithFormat:@"member=%@&groupId=%d",
+//                           delegate.userName,
+//                           currentGroupId] dataUsingEncoding:NSUTF8StringEncoding]];
+//        [request setHTTPBody:body];
+//        NSHTTPURLResponse *response = nil;
+//        NSError *error = [[NSError alloc] init];
+//        [NSURLConnection sendSynchronousRequest:request
+//                              returningResponse:&response error:&error];
+//        
+//        
+//        for (int i=0; i<[contacts count]; i++) {
+//            if ([[contactsChecked objectAtIndex:i] boolValue] == YES){
+//                NSDictionary *itemAtIndex = (NSDictionary *)[contacts objectAtIndex:i];
+//                NSString *member = [itemAtIndex objectForKey:@"name"];
+//#ifdef SIMULATOR
+//                NSString *url = @"http://localhost:8888/ResearchProject/server-side/add-newChatGroup.php";
+//#endif
+//                
+//#ifdef DEVICE_SCHOOL
+//                NSString *url = @"http://172.29.0.199:8888/ResearchProject/server-side/add-newChatGroup.php";
+//#endif
+//                
+//#ifdef DEVICE_HOME
+//                NSString *url = @"http://192.168.0.72:8888/ResearchProject/server-side/add-newChatGroup.php";
+//#endif
+//                NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//                [request setURL:[NSURL URLWithString:url]];
+//                [request setHTTPMethod:@"POST"];
+//                NSMutableData *body = [NSMutableData data];
+//                [body appendData:[[NSString stringWithFormat:@"member=%@&groupId=%d",
+//                                   member,
+//                                   currentGroupId] dataUsingEncoding:NSUTF8StringEncoding]];
+//                [request setHTTPBody:body];
+//                NSHTTPURLResponse *response = nil;
+//                NSError *error = [[NSError alloc] init];
+//                [NSURLConnection sendSynchronousRequest:request
+//                                      returningResponse:&response error:&error];
+//            }
+//        }
+//    }
+//}
 
 -(void)getLatestGroupId
 {
+#ifdef SIMULATOR
     NSString *url = @"http://localhost:8888/ResearchProject/server-side/get-highest-groupId.php";
+#endif
+    
+#ifdef DEVICE_SCHOOL
+    NSString *url = @"http://172.29.0.199:8888/ResearchProject/server-side/get-highest-groupId.php";
+#endif
+    
+#ifdef DEVICE_HOME
+    NSString *url = @"http://192.168.0.72:8888/ResearchProject/server-side/get-highest-groupId.php";
+#endif
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
@@ -120,7 +171,19 @@
 
 
 -(void)getContactList{
-    NSString *url = @"http://localhost:8888/ResearchProject/server-side/contact-list.php";
+    FieldStudyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+#ifdef SIMULATOR
+    NSString *url = [NSString stringWithFormat:@"http://localhost:8888/ResearchProject/server-side/contact-list.php?user=%@",delegate.userName];
+#endif
+    
+#ifdef DEVICE_SCHOOL
+    NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/contact-list.php?user=%@",delegate.userName];
+#endif
+    
+#ifdef DEVICE_HOME
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.72:8888/ResearchProject/server-side/contact-list.php?user=%@",delegate.userName];
+#endif
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];

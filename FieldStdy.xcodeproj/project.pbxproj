@@ -16,7 +16,7 @@
 		447341D21777880D00F54DBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447341D11777880D00F54DBB /* CoreGraphics.framework */; };
 		447341D81777880D00F54DBB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 447341D61777880D00F54DBB /* InfoPlist.strings */; };
 		447341DA1777880D00F54DBB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341D91777880D00F54DBB /* main.m */; };
-		447341DE1777880D00F54DBB /* ChatAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341DD1777880D00F54DBB /* ChatAppDelegate.m */; };
+		447341DE1777880D00F54DBB /* FieldStudyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341DD1777880D00F54DBB /* FieldStudyAppDelegate.m */; };
 		447341E01777880D00F54DBB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 447341DF1777880D00F54DBB /* Default.png */; };
 		447341E21777880D00F54DBB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 447341E11777880D00F54DBB /* Default@2x.png */; };
 		447341E41777880D00F54DBB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 447341E31777880D00F54DBB /* Default-568h@2x.png */; };
@@ -29,6 +29,8 @@
 		44C0D36F17878DF100245D99 /* navigator.png in Resources */ = {isa = PBXBuildFile; fileRef = 44C0D36E17878DF100245D99 /* navigator.png */; };
 		44C0D3721787947300245D99 /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D3711787947300245D99 /* MyLocation.m */; };
 		44C0D375178A922600245D99 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D374178A922600245D99 /* LoginViewController.m */; };
+		44C0D378178E0B0200245D99 /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D377178E0B0100245D99 /* TasksViewController.m */; };
+		44C0D37B178E0BEF00245D99 /* TaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D37A178E0BEF00245D99 /* TaskDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,16 +39,16 @@
 		446A1166178110C60098CE4B /* AddNewChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewChatViewController.m; sourceTree = "<group>"; };
 		446A116A178227730098CE4B /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
 		446A116C17822B520098CE4B /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
-		447341CA1777880D00F54DBB /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		447341CA1777880D00F54DBB /* FieldStdy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FieldStdy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447341CD1777880D00F54DBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		447341CF1777880D00F54DBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		447341D11777880D00F54DBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		447341D51777880D00F54DBB /* Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chat-Info.plist"; sourceTree = "<group>"; };
+		447341D51777880D00F54DBB /* FieldStdy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FieldStdy-Info.plist"; sourceTree = "<group>"; };
 		447341D71777880D00F54DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		447341D91777880D00F54DBB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		447341DB1777880D00F54DBB /* Chat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chat-Prefix.pch"; sourceTree = "<group>"; };
-		447341DC1777880D00F54DBB /* ChatAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatAppDelegate.h; sourceTree = "<group>"; };
-		447341DD1777880D00F54DBB /* ChatAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatAppDelegate.m; sourceTree = "<group>"; };
+		447341DB1777880D00F54DBB /* FieldStdy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FieldStdy-Prefix.pch"; sourceTree = "<group>"; };
+		447341DC1777880D00F54DBB /* FieldStudyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FieldStudyAppDelegate.h; sourceTree = "<group>"; };
+		447341DD1777880D00F54DBB /* FieldStudyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FieldStudyAppDelegate.m; sourceTree = "<group>"; };
 		447341DF1777880D00F54DBB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		447341E11777880D00F54DBB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		447341E31777880D00F54DBB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -64,6 +66,10 @@
 		44C0D3711787947300245D99 /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocation.m; sourceTree = "<group>"; };
 		44C0D373178A922600245D99 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		44C0D374178A922600245D99 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		44C0D376178E0B0100245D99 /* TasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksViewController.h; sourceTree = "<group>"; };
+		44C0D377178E0B0100245D99 /* TasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksViewController.m; sourceTree = "<group>"; };
+		44C0D379178E0BEF00245D99 /* TaskDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailViewController.h; sourceTree = "<group>"; };
+		44C0D37A178E0BEF00245D99 /* TaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +93,7 @@
 			children = (
 				44C0D3691787812700245D99 /* MapKit.framework */,
 				44C0D3671787810100245D99 /* CoreLocation.framework */,
-				447341D31777880D00F54DBB /* Chat */,
+				447341D31777880D00F54DBB /* FieldStudy */,
 				447341CC1777880D00F54DBB /* Frameworks */,
 				447341CB1777880D00F54DBB /* Products */,
 			);
@@ -96,7 +102,7 @@
 		447341CB1777880D00F54DBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				447341CA1777880D00F54DBB /* Chat.app */,
+				447341CA1777880D00F54DBB /* FieldStdy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,12 +117,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		447341D31777880D00F54DBB /* Chat */ = {
+		447341D31777880D00F54DBB /* FieldStudy */ = {
 			isa = PBXGroup;
 			children = (
-				447341DC1777880D00F54DBB /* ChatAppDelegate.h */,
-				447341DD1777880D00F54DBB /* ChatAppDelegate.m */,
+				447341DC1777880D00F54DBB /* FieldStudyAppDelegate.h */,
+				447341DD1777880D00F54DBB /* FieldStudyAppDelegate.m */,
 				447341E51777880D00F54DBB /* MainStoryboard.storyboard */,
+				44C0D379178E0BEF00245D99 /* TaskDetailViewController.h */,
+				44C0D37A178E0BEF00245D99 /* TaskDetailViewController.m */,
+				44C0D376178E0B0100245D99 /* TasksViewController.h */,
+				44C0D377178E0B0100245D99 /* TasksViewController.m */,
 				44C0D373178A922600245D99 /* LoginViewController.h */,
 				44C0D374178A922600245D99 /* LoginViewController.m */,
 				44C0D36B1787860E00245D99 /* MapViewController.h */,
@@ -131,17 +141,18 @@
 				447341F1177788B500F54DBB /* ChatsViewController.m */,
 				447341D41777880D00F54DBB /* Supporting Files */,
 			);
+			name = FieldStudy;
 			path = Chat;
 			sourceTree = "<group>";
 		};
 		447341D41777880D00F54DBB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				447341D51777880D00F54DBB /* Chat-Info.plist */,
+				447341D51777880D00F54DBB /* FieldStdy-Info.plist */,
 				446414701778EE2E000C442F /* Readme.txt */,
 				447341D61777880D00F54DBB /* InfoPlist.strings */,
 				447341D91777880D00F54DBB /* main.m */,
-				447341DB1777880D00F54DBB /* Chat-Prefix.pch */,
+				447341DB1777880D00F54DBB /* FieldStdy-Prefix.pch */,
 				447341DF1777880D00F54DBB /* Default.png */,
 				447341E11777880D00F54DBB /* Default@2x.png */,
 				447341E31777880D00F54DBB /* Default-568h@2x.png */,
@@ -155,9 +166,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		447341C91777880D00F54DBB /* Chat */ = {
+		447341C91777880D00F54DBB /* FieldStdy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 447341ED1777880D00F54DBB /* Build configuration list for PBXNativeTarget "Chat" */;
+			buildConfigurationList = 447341ED1777880D00F54DBB /* Build configuration list for PBXNativeTarget "FieldStdy" */;
 			buildPhases = (
 				447341C61777880D00F54DBB /* Sources */,
 				447341C71777880D00F54DBB /* Frameworks */,
@@ -167,9 +178,9 @@
 			);
 			dependencies = (
 			);
-			name = Chat;
+			name = FieldStdy;
 			productName = Chat;
-			productReference = 447341CA1777880D00F54DBB /* Chat.app */;
+			productReference = 447341CA1777880D00F54DBB /* FieldStdy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +193,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Bo Wang";
 			};
-			buildConfigurationList = 447341C51777880D00F54DBB /* Build configuration list for PBXProject "Chat" */;
+			buildConfigurationList = 447341C51777880D00F54DBB /* Build configuration list for PBXProject "FieldStdy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -194,7 +205,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				447341C91777880D00F54DBB /* Chat */,
+				447341C91777880D00F54DBB /* FieldStdy */,
 			);
 		};
 /* End PBXProject section */
@@ -224,13 +235,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				447341DA1777880D00F54DBB /* main.m in Sources */,
-				447341DE1777880D00F54DBB /* ChatAppDelegate.m in Sources */,
+				447341DE1777880D00F54DBB /* FieldStudyAppDelegate.m in Sources */,
 				447341F2177788B500F54DBB /* ChatsViewController.m in Sources */,
 				447341F517778C8400F54DBB /* ChatDetailViewController.m in Sources */,
 				446A1167178110C60098CE4B /* AddNewChatViewController.m in Sources */,
 				44C0D36D1787860E00245D99 /* MapViewController.m in Sources */,
 				44C0D3721787947300245D99 /* MyLocation.m in Sources */,
 				44C0D375178A922600245D99 /* LoginViewController.m in Sources */,
+				44C0D378178E0B0200245D99 /* TasksViewController.m in Sources */,
+				44C0D37B178E0BEF00245D99 /* TaskDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,9 +329,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Chat/Chat-Prefix.pch";
-				INFOPLIST_FILE = "Chat/Chat-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Chat/FieldStdy-Prefix.pch";
+				INFOPLIST_FILE = "Chat/FieldStdy-Info.plist";
+				PRODUCT_NAME = FieldStdy;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -327,9 +340,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Chat/Chat-Prefix.pch";
-				INFOPLIST_FILE = "Chat/Chat-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Chat/FieldStdy-Prefix.pch";
+				INFOPLIST_FILE = "Chat/FieldStdy-Info.plist";
+				PRODUCT_NAME = FieldStdy;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -337,7 +350,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		447341C51777880D00F54DBB /* Build configuration list for PBXProject "Chat" */ = {
+		447341C51777880D00F54DBB /* Build configuration list for PBXProject "FieldStdy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				447341EB1777880D00F54DBB /* Debug */,
@@ -346,7 +359,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		447341ED1777880D00F54DBB /* Build configuration list for PBXNativeTarget "Chat" */ = {
+		447341ED1777880D00F54DBB /* Build configuration list for PBXNativeTarget "FieldStdy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				447341EE1777880D00F54DBB /* Debug */,

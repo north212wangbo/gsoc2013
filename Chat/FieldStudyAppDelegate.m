@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Bo Wang. All rights reserved.
 //
 
-#import "ChatAppDelegate.h"
+#import "FieldStudyAppDelegate.h"
 
-@implementation ChatAppDelegate
+@implementation FieldStudyAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

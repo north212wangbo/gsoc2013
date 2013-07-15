@@ -10,7 +10,9 @@
 #import <MapKit/MapKit.h>
 
 @interface MyLocation : NSObject <MKAnnotation>
-
+@property (nonatomic,copy) NSString *name;
+@property (nonatomic, copy) NSString *address;
+@property (nonatomic, assign) CLLocationCoordinate2D theCoordinate;
 - (id)initWithName:(NSString*)name coordinate:(CLLocationCoordinate2D)coordinate;
 
 

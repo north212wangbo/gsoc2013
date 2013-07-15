@@ -9,9 +9,7 @@
 #import "MyLocation.h"
 
 @interface MyLocation ()
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic, copy) NSString *address;
-@property (nonatomic, assign) CLLocationCoordinate2D theCoordinate;
+
 @end
 
 @implementation MyLocation

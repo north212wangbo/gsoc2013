@@ -7,8 +7,10 @@
 //
 
 #import "ChatsViewController.h"
-#import "ChatAppDelegate.h"
+#import "FieldStudyAppDelegate.h"
 #import "ChatDetailViewController.h"
+//#define DEVICE_SCHOOL
+#define DEVICE_HOME
 
 @interface ChatsViewController () {
     
@@ -52,6 +54,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self getGrouplist];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -74,7 +77,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"Groups count: %d",[groups count]);
-    return (groups == nil)?1:[groups count];
+    return (groups == nil)?0:[groups count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:
@@ -161,9 +164,21 @@
 }
 
 - (void)getGrouplist{
-    ChatAppDelegate *delegate = (ChatAppDelegate *)[[UIApplication sharedApplication] delegate];
+    FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
+#ifdef SIMULATOR
     NSString *url = [NSString stringWithFormat:
                      @"http://localhost:8888/ResearchProject/server-side/group-list.php?user=%@",delegate.userName];
+#endif
+    
+#ifdef DEVICE_SCHOOL
+    NSString *url = [NSString stringWithFormat:
+                     @"http://172.29.0.199:8888/ResearchProject/server-side/group-list.php?user=%@",delegate.userName];
+#endif
+    
+#ifdef DEVICE_HOME
+    NSString *url = [NSString stringWithFormat:
+                     @"http://192.168.0.72:8888/ResearchProject/server-side/group-list.php?user=%@",delegate.userName];
+#endif
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];

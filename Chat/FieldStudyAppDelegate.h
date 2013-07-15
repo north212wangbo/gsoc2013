@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatAppDelegate : UIResponder <UIApplicationDelegate>
+@interface FieldStudyAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString *userName;

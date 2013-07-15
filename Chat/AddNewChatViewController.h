@@ -11,7 +11,7 @@
 @interface AddNewChatViewController : UIViewController <UITableViewDelegate,UITableViewDataSource,NSXMLParserDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *ContactList;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *okButton;
+
 - (IBAction)createGroup:(id)sender;
 
 

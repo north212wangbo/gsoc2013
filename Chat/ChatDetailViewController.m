@@ -7,7 +7,9 @@
 //
 
 #import "ChatDetailViewController.h"
-#import "ChatAppDelegate.h"
+#import "FieldStudyAppDelegate.h"
+//#define DEVICE_SCHOOL
+#define DEVICE_HOME
 
 @interface ChatDetailViewController () {
     
@@ -48,7 +50,7 @@
     self.messageList.dataSource = self;
     self.messageList.delegate = self;
     
-    ChatAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    FieldStudyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     userName = delegate.userName;
     [self getNewMessages];
 }
@@ -64,10 +66,20 @@
     [self.messageText resignFirstResponder];
     if ( [self.messageText.text length] > 0 ) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        
+#ifdef SIMULATOR
         NSString *url = [NSString stringWithFormat:
                          @"http://localhost:8888/ResearchProject/server-side/add.php"];
+#endif
         
+#ifdef DEVICE_SCHOOL
+        NSString *url = [NSString stringWithFormat:
+                         @"http://172.29.0.199:8888/ResearchProject/server-side/add.php"];
+#endif
+        
+#ifdef DEVICE_HOME
+        NSString *url = [NSString stringWithFormat:
+                         @"http://192.168.0.72:8888/ResearchProject/server-side/add.php"];
+#endif
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
                                          init];
         [request setURL:[NSURL URLWithString:url]];
@@ -92,8 +104,20 @@
 
 
 - (void)getNewMessages {
+#ifdef SIMULATOR
     NSString *url = [NSString stringWithFormat:
                      @"http://localhost:8888/ResearchProject/server-side/messages.php?past=%d&t=%ld&groupId=%@",lastId,time(0),self.groupId];
+#endif
+    
+#ifdef DEVICE_SCHOOL
+    NSString *url = [NSString stringWithFormat:
+                     @"http://172.29.0.199:8888/ResearchProject/server-side/messages.php?past=%d&t=%ld&groupId=%@",lastId,time(0),self.groupId];
+#endif
+    
+#ifdef DEVICE_HOME
+    NSString *url = [NSString stringWithFormat:
+                     @"http://192.168.0.72:8888/ResearchProject/server-side/messages.php?past=%d&t=%ld&groupId=%@",lastId,time(0),self.groupId];
+#endif
     NSLog(@"Group id is: %@",self.groupId);
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];

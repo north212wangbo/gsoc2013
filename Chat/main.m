@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ChatAppDelegate.h"
+#import "FieldStudyAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([ChatAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FieldStudyAppDelegate class]));
     }
 }

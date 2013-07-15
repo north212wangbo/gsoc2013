@@ -7,7 +7,10 @@
 //
 
 #import "LoginViewController.h"
-#import "ChatAppDelegate.h"
+#import "FieldStudyAppDelegate.h"
+
+//#define DEVICE_SCHOOL
+#define DEVICE_HOME
 
 @interface LoginViewController () {
     NSString *user;
@@ -60,19 +63,35 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-    user = [[alertView textFieldAtIndex:0] text];
-    password = [[alertView textFieldAtIndex:1] text];
-    
-    NSLog(@"Login:%@", user);
-    NSLog(@"Password: %@", password);
-    [self authenticate];
+    if (buttonIndex == 0) {
+        user = [[alertView textFieldAtIndex:0] text];
+        password = [[alertView textFieldAtIndex:1] text];
+        
+        NSLog(@"Login:%@", user);
+        NSLog(@"Password: %@", password);
+        [self authenticate];
+    } else {
+        NSLog(@"Canceled!");
+    }
+
 }
 
 
 - (void)authenticate {
+#ifdef SIMULATOR
     NSString *url = [NSString stringWithFormat:
-                     @"http://localhost:8888/ResearchProject/server-side/login.php?user=%@&password=%@",user,password];
+                     @"http://localhost:8888/ResearchProject/server-side/login.php?user=%@&passwor%@",user,password];
+#endif
+    //For device to access localhost
+#ifdef DEVICE_SCHOOL
+    NSString *url = [NSString stringWithFormat:
+                     @"http://172.29.0.199:8888/ResearchProject/server-side/login.php?user=%@&password=%@",user,password];
+#endif
+    
+#ifdef DEVICE_HOME
+    NSString *url = [NSString stringWithFormat:
+                     @"http://192.168.0.72:8888/ResearchProject/server-side/login.php?user=%@&password=%@",user,password];
+#endif
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
@@ -110,8 +129,11 @@ didReceiveResponse:(NSURLResponse *)response
         [parser parse];
         
         if ([success isEqualToString:@"1"] ) {
-            ChatAppDelegate *delegate = (ChatAppDelegate *)[[UIApplication sharedApplication] delegate];
+            FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
             delegate.userName = userName;
+        } else {
+            FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
+            delegate.userName = nil;
         }
     }
     

@@ -9,8 +9,10 @@
 #import "MapViewController.h"
 #import "MyLocation.h"
 #import <CoreLocation/CoreLocation.h>
+#import "FieldStudyAppDelegate.h"
 #define METERS_PER_MILE 1609.344
-
+//#define DEVICE_SCHOOL
+#define DEVICE_HOME
 
 @interface MapViewController () {
     CLLocationManager *locationManager;
@@ -63,16 +65,15 @@
     //refreshButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.FieldMapView addSubview:refreshButton];
     
-    [self getLocations];
 }
 
 -(void)viewWillLayoutSubviews {
     const CGRect viewBounds = self.view.bounds;
     const bool isPortrait = viewBounds.size.height >= viewBounds.size.width;
     if (isPortrait) {
-        refreshButton.frame = CGRectMake(10, self.FieldMapView.bounds.size.height-50, 40,40);
+        refreshButton.frame = CGRectMake(10, self.FieldMapView.bounds.size.height-45, 40,40);
     } else {
-        refreshButton.frame = CGRectMake(10, self.FieldMapView.bounds.size.width-50, 40,40);
+        refreshButton.frame = CGRectMake(10, self.FieldMapView.bounds.size.width-45, 40,40);
     }
 }
 
@@ -83,22 +84,54 @@
 }
 
 -(void)refresh{
-    //To do: update one's location, pull other's location
-//    CLLocationCoordinate2D zoomLocation;
-//    zoomLocation.latitude = 45.703557;
-//    zoomLocation.longitude= -122.642766;
-//    
-//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1*METERS_PER_MILE, 1*METERS_PER_MILE);
+    FieldStudyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if (delegate.userName != nil){
+        
+        [self updateUserLocation];
+        [self getLocations];
+    }
+}
+
+-(void)updateUserLocation{
+    FieldStudyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if (delegate.userName != nil){
+#ifdef SIMULATOR
+    NSString *url = [NSString stringWithFormat:@"http://localhost:8888/ResearchProject/server-side/update-user-location.php?user=%@&latitude=%f&longitude=%f", delegate.userName, self.FieldMapView.u serLocation.coordinate.latitude, self.FieldMapView.userLocation.coordinate.longitude];
+#endif
     
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.FieldMapView.userLocation.coordinate, 1*METERS_PER_MILE, 1*METERS_PER_MILE);
+#ifdef DEVICE_SCHOOL
+    NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/update-user-location.php?user=%@&latitude=%f&longitude=%f", delegate.userName, self.FieldMapView.userLocation.coordinate.latitude, self.FieldMapView.userLocation.coordinate.longitude];
+#endif
     
-    [self.FieldMapView setRegion:viewRegion animated:YES];
-    [self getLocations];
-    
+#ifdef DEVICE_HOME
+        NSString *url = [NSString stringWithFormat:@"http://192.168.0.72:8888/ResearchProject/server-side/update-user-location.php?user=%@&latitude=%f&longitude=%f", delegate.userName, self.FieldMapView.userLocation.coordinate.latitude, self.FieldMapView.userLocation.coordinate.longitude];
+#endif
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
+                                        init];
+        [request setURL:[NSURL URLWithString:url]];
+        [request setHTTPMethod:@"POST"];
+        NSHTTPURLResponse *response = nil;
+        NSError *error = [[NSError alloc] init];
+        [NSURLConnection sendSynchronousRequest:request
+                              returningResponse:&response error:&error];
+    }
 }
 
 -(void)getLocations{
-    NSString *url = @"http://localhost:8888/ResearchProject/server-side/get-group-location.php";
+    FieldStudyAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+#ifdef SIMULATOR
+    NSString *url = [NSString stringWithFormat:@"http://localhost:8888/ResearchProject/server-side/get-group-location.php?user=%@",delegate.userName];
+#endif
+    
+#ifdef DEVICE_SCHOOL
+    NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/get-group-location.php?user=%@",delegate.userName];
+#endif
+    
+#ifdef DEVICE_HOME
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.72:8888/ResearchProject/server-side/get-group-location.php?user=%@",delegate.userName];
+#endif
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
@@ -140,7 +173,16 @@ didReceiveResponse:(NSURLResponse *)response
     [locationParser parse];
     
     //To do: change annotation style
-    [self.FieldMapView removeAnnotations:self.FieldMapView.annotations];
+    //Remove all the previous annotations except for the user location annotation
+    
+    while ([self.FieldMapView.annotations count] > 1) {
+        [self.FieldMapView removeAnnotation:[self.FieldMapView.annotations lastObject]];
+    }
+    
+    NSLog(@"annotation count: %d",[self.FieldMapView.annotations count]);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(self.FieldMapView.userLocation.coordinate, 1*METERS_PER_MILE, 1*METERS_PER_MILE);
+    [self.FieldMapView setRegion:viewRegion animated:YES];
+    
     for (id item in locations) {
         CLLocationCoordinate2D currLocation;
         currLocation.latitude = [[item objectForKey:@"latitude"] doubleValue];
