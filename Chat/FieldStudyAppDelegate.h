@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString *userName;
+@property (strong, nonatomic) NSMutableArray *messages;
 
 @end

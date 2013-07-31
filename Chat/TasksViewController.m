@@ -8,9 +8,12 @@
 
 #import "TasksViewController.h"
 #import "FieldStudyAppDelegate.h"
-//#define DEVICE_SCHOOL
-#define DEVICE_HOME
+#import "TaskDetailViewController.h"
+#define DEVICE_SCHOOL
+//#define DEVICE_HOME
 
+
+//To do: pull down to refresh
 @interface TasksViewController () {
     NSMutableArray *tasks;
     NSMutableArray *tasksFinished;
@@ -18,6 +21,7 @@
     NSString *user;
     NSMutableData *receivedData;
     NSXMLParser *parser;
+    NSURLConnection *conn1,*conn2;
     
     Boolean inName;
     Boolean inAmount;
@@ -28,6 +32,7 @@
     NSString *desc;
     NSString *sampleId;
     NSString *completed;
+    NSDictionary *taskInfo;
 }
 
 @end
@@ -48,10 +53,15 @@
     [super viewDidLoad];
     tasksFinished = [[NSMutableArray alloc] init];
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    //self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
      self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(getTaskList) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+    
     [self getTaskList];
 }
 
@@ -87,7 +97,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"taskIdentifier"];
     //cell = (UITableViewCell *)[self.messageList dequeueReusableCellWithIdentifier:@"ChatListItem"];
     if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"taslIdentifier"
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"taskIdentifier"
                                                      owner:self options:nil];
         cell = (UITableViewCell *)[nib objectAtIndex:0];
     }
@@ -135,10 +145,10 @@
 -(void)checkButtonTapped:(id)sender event:(UIEvent *)event{
     NSSet *touches = [event allTouches];
     UITouch *touch = [touches anyObject];
-    CGPoint currentTouchPosition = [touch locationInView:self.TaskTableView];
-    NSIndexPath *indexPath = [self.TaskTableView indexPathForRowAtPoint:currentTouchPosition];
+    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:currentTouchPosition];
     if (indexPath!=nil) {
-        [self tableView:self.TaskTableView accessoryButtonTappedForRowWithIndexPath:indexPath];
+        [self tableView:self.tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
     }
 }
 /*
@@ -180,18 +190,31 @@
 }
 */
 
-#pragma mark - Table view delegate
+#pragma mark - Table view delegate and segue
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
+    
+     //TaskDetailViewController *detailViewController = [[TaskDetailViewController alloc] init];
      // ...
      // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+     //[self.navigationController pushViewController:detailViewController animated:YES];
+    [self performSegueWithIdentifier:@"TaskDetailViewSegue" sender:self];
+     
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if ([segue.identifier isEqualToString:@"TaskDetailViewSegue"]) {
+        TaskDetailViewController *controller = segue.destinationViewController;
+        NSDictionary *itemAtIndex = (NSDictionary *)[tasks objectAtIndex:indexPath.row];
+        controller.taskId = [itemAtIndex objectForKey:@"id"];
+        controller.hidesBottomBarWhenPushed = YES;
+    }
+}
+
+#pragma mark - get task list
 
 -(void)getTaskList{
     FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -208,8 +231,8 @@
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
     
-    NSURLConnection *conn=[[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (conn)
+    conn1=[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn1)
     {
         NSLog(@"connected");
         receivedData = [[NSMutableData alloc] init];
@@ -221,28 +244,35 @@
     
 }
 
-- (void)connection:(NSURLConnection *)connection
-didReceiveResponse:(NSURLResponse *)response
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [receivedData setLength:0];
 }
 
-- (void)connection:(NSURLConnection *)connection
-    didReceiveData:(NSData *)data
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [receivedData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    if ( tasks == nil )
-        tasks = [[NSMutableArray alloc] init];
+    if (connection == conn1) {
+        if ( tasks == nil )
+            tasks = [[NSMutableArray alloc] init];
+        
+        [tasks removeAllObjects];  //remove the record of previous user, should find better way
+        parser = [[NSXMLParser alloc] initWithData:receivedData];
+        [parser setDelegate:self];
+        [parser parse];
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+    } else if (connection == conn2) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        self.submitButton.enabled = YES;
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:user,@"user",nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"taskUpdate" object:self userInfo:dict];
+    }
     
-    [tasks removeAllObjects];  //remove the record of previous user, should find better way
-    parser = [[NSXMLParser alloc] initWithData:receivedData];
-    [parser setDelegate:self];
-    [parser parse];
-    [self.TaskTableView reloadData];
 }
 
 - (void)parser:(NSXMLParser *)parser
@@ -288,8 +318,8 @@ didStartElement:(NSString *)elementName
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     if ( [elementName isEqualToString:@"sample"] ) {
-        [tasks addObject:[NSDictionary dictionaryWithObjectsAndKeys:sampleName,
-                           @"name",amount,@"amount",desc,@"desc",sampleId,@"id",completed,@"completed",nil]];
+        taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:sampleName, @"name",amount,@"amount",desc,@"desc",sampleId,@"id",completed,@"completed",nil];
+        [tasks addObject:taskInfo];
     }
     
     if ( [elementName isEqualToString:@"name"] ) {
@@ -316,7 +346,7 @@ didStartElement:(NSString *)elementName
             NSDictionary *itemAtIndex = [tasks objectAtIndex:i];
             NSString *saID = [itemAtIndex objectForKey:@"id"];
 #ifdef DEVICE_SCHOOL
-            NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/update-task-status.php?user=%@&sample=%&finish=YES",delegate.userName,saID];
+            NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/update-task-status.php?user=%@&sample=%@&finish=YES",delegate.userName,saID];
 #endif
             
 #ifdef DEVICE_HOME
@@ -324,15 +354,24 @@ didStartElement:(NSString *)elementName
 #endif
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
             [request setURL:[NSURL URLWithString:url]];
-            [request setHTTPMethod:@"POST"];
-            NSHTTPURLResponse *response = nil;
-            NSError *error = [[NSError alloc] init];
-            [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            [request setHTTPMethod:@"GET"];
+            
+            
+            conn2 =[[NSURLConnection alloc] initWithRequest:request delegate:self];
+            if (conn2)
+            {
+                NSLog(@"connected");
+                receivedData = [[NSMutableData alloc] init];
+            }
+            else
+            {
+                NSLog(@"not connected");
+            }
         } else {
             NSDictionary *itemAtIndex = [tasks objectAtIndex:i];
             NSString *saID = [NSString stringWithFormat:@"%@",[itemAtIndex objectForKey:@"id"]];
 #ifdef DEVICE_SCHOOL
-            NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/update-task-status.php?user=%@&sample=%&finish=NO",delegate.userName,saID];
+            NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/update-task-status.php?user=%@&sample=%@&finish=NO",delegate.userName,saID];
 #endif
             
 #ifdef DEVICE_HOME
@@ -340,15 +379,23 @@ didStartElement:(NSString *)elementName
 #endif
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
             [request setURL:[NSURL URLWithString:url]];
-            [request setHTTPMethod:@"POST"];
-            NSHTTPURLResponse *response = nil;
-            NSError *error = [[NSError alloc] init];
-            [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            [request setHTTPMethod:@"GET"];
+            
+            
+            conn2 =[[NSURLConnection alloc] initWithRequest:request delegate:self];
+            if (conn2)
+            {
+                NSLog(@"connected");
+                receivedData = [[NSMutableData alloc] init];
+            }
+            else
+            {
+                NSLog(@"not connected");
+            }
         }
     }
-
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    self.submitButton.enabled = YES;
-
 }
+
+
+
 @end

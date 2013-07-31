@@ -10,8 +10,8 @@
 #import "ChatDetailViewController.h"
 #import "FieldStudyAppDelegate.h"
 #import "ChatsViewController.h"
-//#define DEVICE_SCHOOL
-#define DEVICE_HOME
+#define DEVICE_SCHOOL
+//#define DEVICE_HOME
 
 @interface AddNewChatViewController () {
     

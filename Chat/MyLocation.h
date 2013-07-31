@@ -12,7 +12,9 @@
 @interface MyLocation : NSObject <MKAnnotation>
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic, copy) NSString *address;
+@property (nonatomic,copy) NSArray *calloutCells;
 @property (nonatomic, assign) CLLocationCoordinate2D theCoordinate;
+//@property (nonatomic, assign) NSString *detail;
 - (id)initWithName:(NSString*)name coordinate:(CLLocationCoordinate2D)coordinate;
 
 

@@ -9,10 +9,12 @@
 #import "LoginViewController.h"
 #import "FieldStudyAppDelegate.h"
 
-//#define DEVICE_SCHOOL
-#define DEVICE_HOME
+#define DEVICE_SCHOOL
+//#define DEVICE_HOME
 
 @interface LoginViewController () {
+    UIAlertView *alert;
+    
     NSString *user;
     NSString *password;
     NSURLConnection *conn;
@@ -56,7 +58,7 @@
 }
 
 - (void)login{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log In" message:@"" delegate:self cancelButtonTitle:@"Login" otherButtonTitles:@"Cancel", nil];
+    alert = [[UIAlertView alloc] initWithTitle:@"Log In" message:@"" delegate:self cancelButtonTitle:@"Login" otherButtonTitles:@"Cancel", nil];
     alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
     [alert show];
 }
@@ -132,6 +134,7 @@ didReceiveResponse:(NSURLResponse *)response
             FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
             delegate.userName = userName;
         } else {
+            [self shakeView:alert];
             FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
             delegate.userName = nil;
         }
@@ -185,5 +188,26 @@ didStartElement:(NSString *)elementName
         }
 }
 
+#pragma mark - shake alertview
+
+- (void)shakeView:(UIView *)viewToShake
+{
+    CGFloat t = 2.0;
+    CGAffineTransform translateRight  = CGAffineTransformTranslate(CGAffineTransformIdentity, t, 0.0);
+    CGAffineTransform translateLeft = CGAffineTransformTranslate(CGAffineTransformIdentity, -t, 0.0);
+    
+    viewToShake.transform = translateLeft;
+    
+    [UIView animateWithDuration:0.07 delay:0.0 options:UIViewAnimationOptionAutoreverse|UIViewAnimationOptionRepeat animations:^{
+        [UIView setAnimationRepeatCount:2.0];
+        viewToShake.transform = translateRight;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [UIView animateWithDuration:0.05 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                viewToShake.transform = CGAffineTransformIdentity;
+            } completion:NULL];
+        }
+    }];
+}
 
 @end

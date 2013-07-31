@@ -10,7 +10,6 @@
 
 @interface TasksViewController : UITableViewController <NSXMLParserDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *submitButton;
-@property (strong, nonatomic) IBOutlet UITableView *TaskTableView;
 - (IBAction)submit:(id)sender;
 
 @end

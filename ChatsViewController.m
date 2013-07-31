@@ -9,8 +9,9 @@
 #import "ChatsViewController.h"
 #import "FieldStudyAppDelegate.h"
 #import "ChatDetailViewController.h"
-//#define DEVICE_SCHOOL
-#define DEVICE_HOME
+#import "BubbleChatDetailViewController.h"
+#define DEVICE_SCHOOL
+//#define DEVICE_HOME
 
 @interface ChatsViewController () {
     
@@ -95,7 +96,11 @@
 
     
     NSDictionary *itemAtIndex = (NSDictionary *)[groups objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat: @"Group(%@)",[itemAtIndex objectForKey:@"groupId"]];
+    if ([[itemAtIndex objectForKey:@"groupId"] isEqualToString:@"0"]) {
+        cell.textLabel.text = @"Broadcast";
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat: @"Group(%@)",[itemAtIndex objectForKey:@"groupId"]];
+    }
     cell.textLabel.font = [UIFont systemFontOfSize:17];
     //cell.detailTextLabel.numberOfLines = 0;
     //cell.detailTextLabel.text = [itemAtIndex objectForKey:@"members"];
@@ -156,11 +161,12 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    if ([segue.identifier isEqualToString:@"chatGroup"]) {
-        ChatDetailViewController *controller = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"bubbleMessageSegue"]) {
+        BubbleChatDetailViewController *controller = segue.destinationViewController;
         NSDictionary *itemAtIndex = (NSDictionary *)[groups objectAtIndex:indexPath.row];
         controller.groupId = [itemAtIndex objectForKey:@"groupId"];
-    }
+        controller.hidesBottomBarWhenPushed = YES;
+    } 
 }
 
 - (void)getGrouplist{

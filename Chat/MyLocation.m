@@ -31,7 +31,6 @@
     return _name;
 }
 
-
 - (CLLocationCoordinate2D)coordinate {
     return _theCoordinate;
 }

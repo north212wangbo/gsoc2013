@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface TaskDetailViewController : UIViewController
+
+@property (strong,nonatomic) NSString *taskId;
+@property (weak, nonatomic) IBOutlet UITextView *taskDetail;
+- (IBAction)doneEditting:(id)sender;
 
 @end

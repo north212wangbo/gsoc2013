@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "BubbleChatDetailViewController.h"
 
-@interface MapViewController : UIViewController <NSXMLParserDelegate,CLLocationManagerDelegate>
+@interface MapViewController : UIViewController <NSXMLParserDelegate,CLLocationManagerDelegate,MKMapViewDelegate,UISearchBarDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *FieldMapView;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end

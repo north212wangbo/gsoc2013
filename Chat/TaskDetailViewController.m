@@ -8,7 +8,9 @@
 
 #import "TaskDetailViewController.h"
 
-@interface TaskDetailViewController ()
+@interface TaskDetailViewController () {
+    NSString *description;
+}
 
 @end
 
@@ -26,7 +28,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    [self hidesBottomBarWhenPushed];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    description = [prefs stringForKey:self.taskId];
+	self.taskDetail.text = description;
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,4 +41,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)doneEditting:(id)sender {
+    description = self.taskDetail.text;
+    [[NSUserDefaults standardUserDefaults] setObject:description forKey:self.taskId];
+    [self.taskDetail resignFirstResponder];
+}
 @end
