@@ -10,6 +10,9 @@
 		2CA5A35E17A1D3A400BB16E9 /* NotiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5A35D17A1D3A400BB16E9 /* NotiView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2CA5A36017A1D5E600BB16E9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA5A35F17A1D5E600BB16E9 /* QuartzCore.framework */; };
 		2CA5A36417A1D64E00BB16E9 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5A36317A1D64E00BB16E9 /* NSTimer+Blocks.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2CD9BF4B17A990DB009E5C5A /* OrganizerTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9BF4A17A990DB009E5C5A /* OrganizerTaskViewController.m */; };
+		2CD9BF4E17A9B19F009E5C5A /* OrganizerTaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9BF4D17A9B19F009E5C5A /* OrganizerTaskDetailViewController.m */; };
+		2CD9BF5117A9C060009E5C5A /* OrganizerTaskEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD9BF5017A9C060009E5C5A /* OrganizerTaskEditViewController.m */; };
 		443E9637179CAA1F00F7B8A7 /* MapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 443E9636179CAA1E00F7B8A7 /* MapAnnotationView.m */; };
 		443E963A179CE4EA00F7B8A7 /* symbol-moving-annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 443E9638179CE4EA00F7B8A7 /* symbol-moving-annotation.png */; };
 		443E963B179CE4EA00F7B8A7 /* symbol-moving-annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 443E9639179CE4EA00F7B8A7 /* symbol-moving-annotation@2x.png */; };
@@ -17,6 +20,8 @@
 		446A1167178110C60098CE4B /* AddNewChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446A1166178110C60098CE4B /* AddNewChatViewController.m */; };
 		446A116B178227730098CE4B /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 446A116A178227730098CE4B /* checked.png */; };
 		446A116D17822B520098CE4B /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 446A116C17822B520098CE4B /* unchecked.png */; };
+		4472D21A17AEEE660059F9B8 /* AssignTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4472D21917AEEE650059F9B8 /* AssignTaskViewController.m */; };
+		4472D21D17AF67CD0059F9B8 /* AddNewSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4472D21C17AF67CC0059F9B8 /* AddNewSampleViewController.m */; };
 		447341CE1777880D00F54DBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447341CD1777880D00F54DBB /* UIKit.framework */; };
 		447341D01777880D00F54DBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447341CF1777880D00F54DBB /* Foundation.framework */; };
 		447341D21777880D00F54DBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447341D11777880D00F54DBB /* CoreGraphics.framework */; };
@@ -28,15 +33,12 @@
 		447341E41777880D00F54DBB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 447341E31777880D00F54DBB /* Default-568h@2x.png */; };
 		447341E71777880D00F54DBB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447341E51777880D00F54DBB /* MainStoryboard.storyboard */; };
 		447341F2177788B500F54DBB /* ChatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341F1177788B500F54DBB /* ChatsViewController.m */; };
-		447341F517778C8400F54DBB /* ChatDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 447341F417778C8400F54DBB /* ChatDetailViewController.m */; };
 		44C0D3681787810100245D99 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C0D3671787810100245D99 /* CoreLocation.framework */; };
 		44C0D36A1787812700245D99 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C0D3691787812700245D99 /* MapKit.framework */; };
 		44C0D36D1787860E00245D99 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D36C1787860E00245D99 /* MapViewController.m */; };
 		44C0D36F17878DF100245D99 /* navigator.png in Resources */ = {isa = PBXBuildFile; fileRef = 44C0D36E17878DF100245D99 /* navigator.png */; };
 		44C0D3721787947300245D99 /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D3711787947300245D99 /* MyLocation.m */; };
 		44C0D375178A922600245D99 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D374178A922600245D99 /* LoginViewController.m */; };
-		44C0D378178E0B0200245D99 /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D377178E0B0100245D99 /* TasksViewController.m */; };
-		44C0D37B178E0BEF00245D99 /* TaskDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0D37A178E0BEF00245D99 /* TaskDetailViewController.m */; };
 		44C0D3B7179498D000245D99 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C0D3B6179498D000245D99 /* AudioToolbox.framework */; };
 		44E8599A17950155006113CB /* BubbleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E8597817950155006113CB /* BubbleMessageCell.m */; };
 		44E8599B17950155006113CB /* BubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E8597A17950155006113CB /* BubbleView.m */; };
@@ -72,6 +74,12 @@
 		2CA5A35F17A1D5E600BB16E9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2CA5A36217A1D64E00BB16E9 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
 		2CA5A36317A1D64E00BB16E9 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
+		2CD9BF4917A990DB009E5C5A /* OrganizerTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizerTaskViewController.h; sourceTree = "<group>"; };
+		2CD9BF4A17A990DB009E5C5A /* OrganizerTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizerTaskViewController.m; sourceTree = "<group>"; };
+		2CD9BF4C17A9B19F009E5C5A /* OrganizerTaskDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizerTaskDetailViewController.h; sourceTree = "<group>"; };
+		2CD9BF4D17A9B19F009E5C5A /* OrganizerTaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizerTaskDetailViewController.m; sourceTree = "<group>"; };
+		2CD9BF4F17A9C05F009E5C5A /* OrganizerTaskEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizerTaskEditViewController.h; sourceTree = "<group>"; };
+		2CD9BF5017A9C060009E5C5A /* OrganizerTaskEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizerTaskEditViewController.m; sourceTree = "<group>"; };
 		443E9635179CAA1E00F7B8A7 /* MapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotationView.h; sourceTree = "<group>"; };
 		443E9636179CAA1E00F7B8A7 /* MapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotationView.m; sourceTree = "<group>"; };
 		443E9638179CE4EA00F7B8A7 /* symbol-moving-annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "symbol-moving-annotation.png"; sourceTree = "<group>"; };
@@ -81,14 +89,18 @@
 		446A1166178110C60098CE4B /* AddNewChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewChatViewController.m; sourceTree = "<group>"; };
 		446A116A178227730098CE4B /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
 		446A116C17822B520098CE4B /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
-		447341CA1777880D00F54DBB /* FieldStdy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FieldStdy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4472D21817AEEE650059F9B8 /* AssignTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignTaskViewController.h; sourceTree = "<group>"; };
+		4472D21917AEEE650059F9B8 /* AssignTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignTaskViewController.m; sourceTree = "<group>"; };
+		4472D21B17AF67CC0059F9B8 /* AddNewSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewSampleViewController.h; sourceTree = "<group>"; };
+		4472D21C17AF67CC0059F9B8 /* AddNewSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewSampleViewController.m; sourceTree = "<group>"; };
+		447341CA1777880D00F54DBB /* FieldStdyForOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FieldStdyForOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447341CD1777880D00F54DBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		447341CF1777880D00F54DBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		447341D11777880D00F54DBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		447341D51777880D00F54DBB /* FieldStdy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FieldStdy-Info.plist"; sourceTree = "<group>"; };
+		447341D51777880D00F54DBB /* FieldStdyForOrganizer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FieldStdyForOrganizer-Info.plist"; sourceTree = "<group>"; };
 		447341D71777880D00F54DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		447341D91777880D00F54DBB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		447341DB1777880D00F54DBB /* FieldStdy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FieldStdy-Prefix.pch"; sourceTree = "<group>"; };
+		447341DB1777880D00F54DBB /* FieldStdyForOrganizer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FieldStdyForOrganizer-Prefix.pch"; sourceTree = "<group>"; };
 		447341DC1777880D00F54DBB /* FieldStudyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FieldStudyAppDelegate.h; sourceTree = "<group>"; };
 		447341DD1777880D00F54DBB /* FieldStudyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FieldStudyAppDelegate.m; sourceTree = "<group>"; };
 		447341DF1777880D00F54DBB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -97,8 +109,6 @@
 		447341E61777880D00F54DBB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		447341F0177788B500F54DBB /* ChatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatsViewController.h; sourceTree = SOURCE_ROOT; };
 		447341F1177788B500F54DBB /* ChatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatsViewController.m; sourceTree = SOURCE_ROOT; };
-		447341F317778C8400F54DBB /* ChatDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDetailViewController.h; sourceTree = "<group>"; };
-		447341F417778C8400F54DBB /* ChatDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDetailViewController.m; sourceTree = "<group>"; };
 		44C0D3671787810100245D99 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		44C0D3691787812700245D99 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		44C0D36B1787860E00245D99 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -108,10 +118,6 @@
 		44C0D3711787947300245D99 /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocation.m; sourceTree = "<group>"; };
 		44C0D373178A922600245D99 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		44C0D374178A922600245D99 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		44C0D376178E0B0100245D99 /* TasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksViewController.h; sourceTree = "<group>"; };
-		44C0D377178E0B0100245D99 /* TasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksViewController.m; sourceTree = "<group>"; };
-		44C0D379178E0BEF00245D99 /* TaskDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailViewController.h; sourceTree = "<group>"; };
-		44C0D37A178E0BEF00245D99 /* TaskDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailViewController.m; sourceTree = "<group>"; };
 		44C0D3B6179498D000245D99 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		44E8597717950155006113CB /* BubbleMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleMessageCell.h; sourceTree = "<group>"; };
 		44E8597817950155006113CB /* BubbleMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleMessageCell.m; sourceTree = "<group>"; };
@@ -198,7 +204,7 @@
 		447341CB1777880D00F54DBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				447341CA1777880D00F54DBB /* FieldStdy.app */,
+				447341CA1777880D00F54DBB /* FieldStdyForOrganizer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,11 +244,11 @@
 		447341D41777880D00F54DBB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				447341D51777880D00F54DBB /* FieldStdy-Info.plist */,
+				447341D51777880D00F54DBB /* FieldStdyForOrganizer-Info.plist */,
 				446414701778EE2E000C442F /* Readme.txt */,
 				447341D61777880D00F54DBB /* InfoPlist.strings */,
 				447341D91777880D00F54DBB /* main.m */,
-				447341DB1777880D00F54DBB /* FieldStdy-Prefix.pch */,
+				447341DB1777880D00F54DBB /* FieldStdyForOrganizer-Prefix.pch */,
 				447341DF1777880D00F54DBB /* Default.png */,
 				447341E11777880D00F54DBB /* Default@2x.png */,
 				447341E31777880D00F54DBB /* Default-568h@2x.png */,
@@ -260,8 +266,6 @@
 			children = (
 				446A1165178110C50098CE4B /* AddNewChatViewController.h */,
 				446A1166178110C60098CE4B /* AddNewChatViewController.m */,
-				447341F317778C8400F54DBB /* ChatDetailViewController.h */,
-				447341F417778C8400F54DBB /* ChatDetailViewController.m */,
 				447341F0177788B500F54DBB /* ChatsViewController.h */,
 				447341F1177788B500F54DBB /* ChatsViewController.m */,
 				44E859B31795C342006113CB /* BubbleChatDetailViewController.h */,
@@ -296,10 +300,16 @@
 		44C0D37F179478FE00245D99 /* TaskTrack */ = {
 			isa = PBXGroup;
 			children = (
-				44C0D379178E0BEF00245D99 /* TaskDetailViewController.h */,
-				44C0D37A178E0BEF00245D99 /* TaskDetailViewController.m */,
-				44C0D376178E0B0100245D99 /* TasksViewController.h */,
-				44C0D377178E0B0100245D99 /* TasksViewController.m */,
+				2CD9BF4917A990DB009E5C5A /* OrganizerTaskViewController.h */,
+				2CD9BF4A17A990DB009E5C5A /* OrganizerTaskViewController.m */,
+				2CD9BF4C17A9B19F009E5C5A /* OrganizerTaskDetailViewController.h */,
+				2CD9BF4D17A9B19F009E5C5A /* OrganizerTaskDetailViewController.m */,
+				2CD9BF4F17A9C05F009E5C5A /* OrganizerTaskEditViewController.h */,
+				2CD9BF5017A9C060009E5C5A /* OrganizerTaskEditViewController.m */,
+				4472D21817AEEE650059F9B8 /* AssignTaskViewController.h */,
+				4472D21917AEEE650059F9B8 /* AssignTaskViewController.m */,
+				4472D21B17AF67CC0059F9B8 /* AddNewSampleViewController.h */,
+				4472D21C17AF67CC0059F9B8 /* AddNewSampleViewController.m */,
 			);
 			name = TaskTrack;
 			sourceTree = "<group>";
@@ -370,9 +380,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		447341C91777880D00F54DBB /* FieldStdy */ = {
+		447341C91777880D00F54DBB /* FieldStdyForOrganizer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 447341ED1777880D00F54DBB /* Build configuration list for PBXNativeTarget "FieldStdy" */;
+			buildConfigurationList = 447341ED1777880D00F54DBB /* Build configuration list for PBXNativeTarget "FieldStdyForOrganizer" */;
 			buildPhases = (
 				447341C61777880D00F54DBB /* Sources */,
 				447341C71777880D00F54DBB /* Frameworks */,
@@ -382,9 +392,9 @@
 			);
 			dependencies = (
 			);
-			name = FieldStdy;
+			name = FieldStdyForOrganizer;
 			productName = Chat;
-			productReference = 447341CA1777880D00F54DBB /* FieldStdy.app */;
+			productReference = 447341CA1777880D00F54DBB /* FieldStdyForOrganizer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -397,7 +407,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Bo Wang";
 			};
-			buildConfigurationList = 447341C51777880D00F54DBB /* Build configuration list for PBXProject "FieldStdy" */;
+			buildConfigurationList = 447341C51777880D00F54DBB /* Build configuration list for PBXProject "FieldStdyForOrganizer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -409,7 +419,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				447341C91777880D00F54DBB /* FieldStdy */,
+				447341C91777880D00F54DBB /* FieldStdyForOrganizer */,
 			);
 		};
 /* End PBXProject section */
@@ -461,13 +471,10 @@
 				447341DA1777880D00F54DBB /* main.m in Sources */,
 				447341DE1777880D00F54DBB /* FieldStudyAppDelegate.m in Sources */,
 				447341F2177788B500F54DBB /* ChatsViewController.m in Sources */,
-				447341F517778C8400F54DBB /* ChatDetailViewController.m in Sources */,
 				446A1167178110C60098CE4B /* AddNewChatViewController.m in Sources */,
 				44C0D36D1787860E00245D99 /* MapViewController.m in Sources */,
 				44C0D3721787947300245D99 /* MyLocation.m in Sources */,
 				44C0D375178A922600245D99 /* LoginViewController.m in Sources */,
-				44C0D378178E0B0200245D99 /* TasksViewController.m in Sources */,
-				44C0D37B178E0BEF00245D99 /* TaskDetailViewController.m in Sources */,
 				44E8599A17950155006113CB /* BubbleMessageCell.m in Sources */,
 				44E8599B17950155006113CB /* BubbleView.m in Sources */,
 				44E8599C17950155006113CB /* MessageInputView.m in Sources */,
@@ -479,6 +486,11 @@
 				443E9637179CAA1F00F7B8A7 /* MapAnnotationView.m in Sources */,
 				2CA5A35E17A1D3A400BB16E9 /* NotiView.m in Sources */,
 				2CA5A36417A1D64E00BB16E9 /* NSTimer+Blocks.m in Sources */,
+				2CD9BF4B17A990DB009E5C5A /* OrganizerTaskViewController.m in Sources */,
+				2CD9BF4E17A9B19F009E5C5A /* OrganizerTaskDetailViewController.m in Sources */,
+				2CD9BF5117A9C060009E5C5A /* OrganizerTaskEditViewController.m in Sources */,
+				4472D21A17AEEE660059F9B8 /* AssignTaskViewController.m in Sources */,
+				4472D21D17AF67CD0059F9B8 /* AddNewSampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,9 +576,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Chat/FieldStdy-Prefix.pch";
-				INFOPLIST_FILE = "Chat/FieldStdy-Info.plist";
-				PRODUCT_NAME = FieldStdy;
+				GCC_PREFIX_HEADER = "Chat/FieldStdyForOrganizer-Prefix.pch";
+				INFOPLIST_FILE = "Chat/FieldStdyForOrganizer-Info.plist";
+				PRODUCT_NAME = FieldStdyForOrganizer;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -575,9 +587,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Chat/FieldStdy-Prefix.pch";
-				INFOPLIST_FILE = "Chat/FieldStdy-Info.plist";
-				PRODUCT_NAME = FieldStdy;
+				GCC_PREFIX_HEADER = "Chat/FieldStdyForOrganizer-Prefix.pch";
+				INFOPLIST_FILE = "Chat/FieldStdyForOrganizer-Info.plist";
+				PRODUCT_NAME = FieldStdyForOrganizer;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -585,7 +597,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		447341C51777880D00F54DBB /* Build configuration list for PBXProject "FieldStdy" */ = {
+		447341C51777880D00F54DBB /* Build configuration list for PBXProject "FieldStdyForOrganizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				447341EB1777880D00F54DBB /* Debug */,
@@ -594,7 +606,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		447341ED1777880D00F54DBB /* Build configuration list for PBXNativeTarget "FieldStdy" */ = {
+		447341ED1777880D00F54DBB /* Build configuration list for PBXNativeTarget "FieldStdyForOrganizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				447341EE1777880D00F54DBB /* Debug */,

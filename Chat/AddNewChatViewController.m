@@ -7,7 +7,6 @@
 //
 
 #import "AddNewChatViewController.h"
-#import "ChatDetailViewController.h"
 #import "FieldStudyAppDelegate.h"
 #import "ChatsViewController.h"
 #define DEVICE_SCHOOL

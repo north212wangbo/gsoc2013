@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "FieldStudyAppDelegate.h"
+#import "OrganizerTaskViewController.h"
 
 #define DEVICE_SCHOOL
 //#define DEVICE_HOME
@@ -133,6 +134,7 @@ didReceiveResponse:(NSURLResponse *)response
         if ([success isEqualToString:@"1"] ) {
             FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
             delegate.userName = userName;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loginSucceed" object:self];
         } else {
             [self shakeView:alert];
             FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];

@@ -8,7 +8,6 @@
 
 #import "ChatsViewController.h"
 #import "FieldStudyAppDelegate.h"
-#import "ChatDetailViewController.h"
 #import "BubbleChatDetailViewController.h"
 #define DEVICE_SCHOOL
 //#define DEVICE_HOME
