@@ -7,7 +7,7 @@
 //
 
 #import "AddNewSampleViewController.h"
-
+#import "FieldStudyAppDelegate.h"
 //#define DEVICE_HOME
 #define DEVICE_SCHOOL
 
@@ -53,7 +53,7 @@
     NSString *encodedAmount = [self.amount.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
 #ifdef DEVICE_SCHOOL
-    NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/add-newSample.php?title=%@&amount=%@&detail=%@",encodedTitle,encodedAmount,encodedDetail];
+    NSString *url = [NSString stringWithFormat:@"http://69.166.62.3/~bowang/gsoc/add-newSample.php?title=%@&amount=%@&detail=%@",encodedTitle,encodedAmount,encodedDetail];
 #endif
     
 #ifdef DEVICE_HOME
@@ -91,5 +91,14 @@
     self.saveButton.enabled = YES;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.navigationController popViewControllerAnimated:YES];
+    
+    FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSString *log = [NSString stringWithFormat:@"%@ New samples added!\n",[DateFormatter stringFromDate:[NSDate date]]];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:delegate.documentTXTPath];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
 }
 @end

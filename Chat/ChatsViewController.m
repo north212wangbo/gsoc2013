@@ -177,7 +177,7 @@
     
 #ifdef DEVICE_SCHOOL
     NSString *url = [NSString stringWithFormat:
-                     @"http://172.29.0.199:8888/ResearchProject/server-side/group-list.php?user=%@",delegate.userName];
+                     @"http://69.166.62.3/~bowang/gsoc/group-list.php?user=%@",delegate.userName];
 #endif
     
 #ifdef DEVICE_HOME

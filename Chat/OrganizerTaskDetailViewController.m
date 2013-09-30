@@ -9,6 +9,7 @@
 #import "OrganizerTaskDetailViewController.h"
 #import "OrganizerTaskEditViewController.h"
 #import "AssignTaskViewController.h"
+#import "FieldStudyAppDelegate.h"
 #define DEVICE_SCHOOL
 //#define DEVICE_HOME
 
@@ -87,7 +88,12 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"taskIdentifier"];
     
     NSDictionary *itemAtIndex = (NSDictionary *)[tasks objectAtIndex:indexPath.row];
-    cell.textLabel.text = [itemAtIndex objectForKey:@"name"];
+    if ([[itemAtIndex objectForKey:@"completed"] isEqualToString:@"1"]) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (completed)",[itemAtIndex objectForKey:@"name"]];
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ (in progress)",[itemAtIndex objectForKey:@"name"]];
+    }
+    
     cell.textLabel.font = [UIFont systemFontOfSize:17];
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.text = [itemAtIndex objectForKey:@"desc"];
@@ -133,7 +139,7 @@
 
 -(void)getTaskList{
 #ifdef DEVICE_SCHOOL
-    NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/get-student-tasks.php?user=%@",self.user];
+    NSString *url = [NSString stringWithFormat:@"http://69.166.62.3/~bowang/gsoc/get-student-tasks.php?user=%@",self.user];
     
 #endif
     
@@ -184,6 +190,15 @@
     
     if (connection == deleteConn) {
         NSLog(@"delete finished");
+        
+        FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+        [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+        NSString *log = [NSString stringWithFormat:@"%@ Task deleted!\n",[DateFormatter stringFromDate:[NSDate date]]];
+        NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:delegate.documentTXTPath];
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
     }
     
 
@@ -266,7 +281,7 @@ didStartElement:(NSString *)elementName
     NSDictionary *itemAtIndex = (NSDictionary *)[tasks objectAtIndex:indexPath.row];
     NSString *taskId = [itemAtIndex objectForKey:@"id"];
 #ifdef DEVICE_SCHOOL
-    NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/delete-task.php?user=%@&task=%@",self.user,taskId];
+    NSString *url = [NSString stringWithFormat:@"http://69.166.62.3/~bowang/gsoc/delete-task.php?user=%@&task=%@",self.user,taskId];
     
 #endif
     

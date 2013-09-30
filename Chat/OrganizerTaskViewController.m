@@ -35,8 +35,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getStudentList) name:@"loginSucceed" object:nil];    //This require view to be loaded first, should find better way
+    //This require view to be loaded first, should find better way
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getStudentList) name:@"loginSucceed" object:nil];    
 	// Do any additional setup after loading the view.
+    [self getStudentList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,7 +53,7 @@
 #endif
     
 #ifdef DEVICE_SCHOOL
-    NSString *url = @"http://172.29.0.199:8888/ResearchProject/server-side/student-list.php";
+    NSString *url = @"http://69.166.62.3/~bowang/gsoc/student-list.php";
 #endif
     
 #ifdef DEVICE_HOME

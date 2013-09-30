@@ -7,6 +7,7 @@
 //
 
 #import "OrganizerTaskEditViewController.h"
+#import "FieldStudyAppDelegate.h"
 
 //#define DEVICE_HOME
 #define DEVICE_SCHOOL
@@ -57,7 +58,7 @@
     NSString *encodedTitle = [self.sampleTitle.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
 #ifdef DEVICE_SCHOOL
-    NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/update-sample.php?sampleId=%@&title=%@&amount=%@&detail=%@",self.sampleId,encodedTitle,self.amount.text,encodedDetail];
+    NSString *url = [NSString stringWithFormat:@"http://69.166.62.3/~bowang/gsoc/update-sample.php?sampleId=%@&title=%@&amount=%@&detail=%@",self.sampleId,encodedTitle,self.amount.text,encodedDetail];
     NSLog(@"%@",url);
 #endif
 
@@ -96,5 +97,14 @@
     NSLog(@"Update finished");
     self.saveButton.enabled = YES;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    NSString *log = [NSString stringWithFormat:@"%@ Edit student task\n",[DateFormatter stringFromDate:[NSDate date]]];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:delegate.documentTXTPath];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
 }
 @end

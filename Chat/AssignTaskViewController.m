@@ -8,6 +8,7 @@
 
 #import "AssignTaskViewController.h"
 #import "FieldStudyAppDelegate.h"
+#import "OrganizerTaskEditViewController.h"
 
 #define DEVICE_SCHOOL
 //#define DEVICE_HOME
@@ -21,8 +22,10 @@
     NSString *sampleId;
     NSString *studentId;
     NSString *sampleName;
+    NSString *amount;
+    NSString *desc;
     
-    Boolean inName,inAssignedTo;
+    Boolean inName,inAssignedTo,inAmount,inDesc;
     NSDictionary *taskInfo;
 }
 
@@ -72,7 +75,7 @@
             NSDictionary *itemAtIndex = [samples objectAtIndex:i];
             NSString *saID = [itemAtIndex objectForKey:@"id"];
 #ifdef DEVICE_SCHOOL
-            NSString *url = [NSString stringWithFormat:@"http://172.29.0.199:8888/ResearchProject/server-side/assign-newtask.php?oID=%@&studentID=%@&saID=%@",delegate.userName,self.studentId,saID];
+            NSString *url = [NSString stringWithFormat:@"http://69.166.62.3/~bowang/gsoc/assign-newtask.php?oID=%@&studentID=%@&saID=%@",delegate.userName,self.studentId,saID];
 #endif
             
 #ifdef DEVICE_HOME
@@ -104,7 +107,7 @@
 
 - (void)getSampleList {
 #ifdef DEVICE_SCHOOL
-    NSString *url = @"http://172.29.0.199:8888/ResearchProject/server-side/get-sampleList.php";
+    NSString *url = @"http://69.166.62.3/~bowang/gsoc/get-sampleList.php";
     
 #endif
     
@@ -157,6 +160,14 @@
         
     } else if (connection == conn2) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        FieldStudyAppDelegate *delegate = (FieldStudyAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+        [DateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+        NSString *log = [NSString stringWithFormat:@"%@ New Tasks Assigned!\n",[DateFormatter stringFromDate:[NSDate date]]];
+        NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:delegate.documentTXTPath];
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
     }
     
 }
@@ -169,10 +180,18 @@ didStartElement:(NSString *)elementName
     if ([elementName isEqualToString:@"sample"]) {
         sampleId = [attributeDict objectForKey:@"id"];
         inName = NO;
+        inAmount = NO;
+        inDesc =NO;
         inAssignedTo = NO;
     }
     if ([elementName isEqualToString:@"name"]) {
         inName = YES;
+    }
+    if ([elementName isEqualToString:@"amount"]) {
+        inAmount = YES;
+    }
+    if ([elementName isEqualToString:@"desc"]) {
+        inDesc = YES;
     }
     if ([elementName isEqualToString:@"AssignedTo"]) {
         inAssignedTo = YES;
@@ -183,6 +202,12 @@ didStartElement:(NSString *)elementName
     if ( inName ) {
         sampleName = string;
     }
+    if ( inAmount ) {
+        amount = string;
+    }
+    if ( inDesc ) {
+        desc = string;
+    }
     if ( inAssignedTo ) {
         studentId = string;
     }
@@ -191,13 +216,19 @@ didStartElement:(NSString *)elementName
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     if ( [elementName isEqualToString:@"sample"] ) {
-        taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:sampleName, @"name",sampleId,@"id",studentId,@"AssignedTo",nil];
+        taskInfo = [NSDictionary dictionaryWithObjectsAndKeys:sampleName, @"name",amount,@"amount",desc,@"desc",sampleId,@"id",studentId,@"AssignedTo",nil];
         [samples addObject:taskInfo];
         studentId = @"";
     }
     
     if ( [elementName isEqualToString:@"name"] ) {
         inName = NO;
+    }
+    if ([elementName isEqualToString:@"amount"]) {
+        inAmount = NO;
+    }
+    if ([elementName isEqualToString:@"desc"]) {
+        inDesc = NO;
     }
     if ( [elementName isEqualToString:@"AssignedTo"] ) {
         inAssignedTo = NO;
@@ -230,6 +261,7 @@ didStartElement:(NSString *)elementName
     cell.detailTextLabel.numberOfLines = 0;
     if (![[itemAtIndex objectForKey:@"AssignedTo"] isEqualToString:@""]) {
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Assigned to %@",[itemAtIndex objectForKey:@"AssignedTo"]];
+        cell.accessoryView = NULL;
     } else {
         cell.detailTextLabel.text = @"Not assigned";
         
@@ -322,6 +354,19 @@ didStartElement:(NSString *)elementName
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if ([segue.identifier isEqualToString:@"OrganizerTaskEditViewSegue"]) {
+        OrganizerTaskEditViewController *controller = segue.destinationViewController;
+        NSDictionary *itemAtIndex = (NSDictionary *)[samples objectAtIndex:indexPath.row];
+        controller.sampleTitleText = [itemAtIndex objectForKey:@"name"];
+        controller.amountText = [itemAtIndex objectForKey:@"amount"];
+        controller.detailText = [itemAtIndex objectForKey:@"desc"];
+        controller.sampleId = [itemAtIndex objectForKey:@"id"];
+        controller.hidesBottomBarWhenPushed = YES;
+    }
 }
 
 @end
